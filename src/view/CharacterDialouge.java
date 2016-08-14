@@ -2,14 +2,12 @@ package view;
 
 import cluedo.Cluedo;
 
-import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import java.awt.*;
 
-public class CharachtersDialog {
+public class CharacterDialouge {
 
-	public CharachtersDialog(JFrame frame, Cluedo cluedo) {
+	public CharacterDialouge(JFrame frame, Cluedo cluedo) {
 
 
 		Object[] possibilities = { "3", "4", "5", "6" };
@@ -19,7 +17,7 @@ public class CharachtersDialog {
 		int numPlayers = Integer.parseInt(numPlayer);
 		System.out.println(numPlayer);
 
-		selectCharachters mansour = new selectCharachters(frame, numPlayers, cluedo);
+		SelectCharacters mansour = new SelectCharacters(frame, numPlayers, cluedo);
 		mansour.setVisible(true);
 
 

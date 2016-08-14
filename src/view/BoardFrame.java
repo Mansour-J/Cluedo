@@ -1,7 +1,6 @@
 package view;
 
 import cluedo.Cluedo;
-import cluedo.Game;
 
 import javax.swing.*;
 
@@ -50,7 +49,7 @@ public class BoardFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         canvas.requestFocus();
 
-        CharachtersDialog dialog = new CharachtersDialog(this, cluedo);
+        CharacterDialouge dialog = new CharacterDialouge(this, cluedo);
     }
 
     public void setMenuBar() {

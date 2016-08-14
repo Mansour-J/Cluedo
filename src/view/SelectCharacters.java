@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by javahemans on 14/08/16.
  */
-public class selectCharachters extends JDialog implements ActionListener{
+public class SelectCharacters extends JDialog implements ActionListener{
 
     JButton sc;
     JButton mustard;
@@ -28,7 +28,7 @@ public class selectCharachters extends JDialog implements ActionListener{
     ArrayList<CharacterCard.Character> characters;
     ImageIcon questionMark = new ImageIcon("images/misc/Questionmark.png");
 
-    public selectCharachters(JFrame parent, int numPlayer, Cluedo cluedo) {
+    public SelectCharacters(JFrame parent, int numPlayer, Cluedo cluedo) {
         super(parent, "Selecting Characters ...", false);
         characters = new ArrayList<>();
         this.numPlayer = numPlayer;
