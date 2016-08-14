@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -10,54 +8,48 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
+import cards.Card;
 import cards.*;
+import cards.CharacterCard;
 import cluedo.Cluedo;
-import util.CluedoError;
 
 /**
  * Created by javahemans on 14/08/16.
  */
-public class GenericDialogue extends JDialog{
+public class GenericDialogue extends JDialog {
 
-    JButton sc;
-    JButton mustard;
-    JButton peacock;
-    JButton white;
-    JButton green;
-    JButton plum;
+	Cluedo cluedo;
 
-    int numPlayer;
-    Cluedo cluedo;
+	ArrayList<CharacterCard.Character> characters;
+	ImageIcon questionMark = new ImageIcon("images/misc/Questionmark.png");
 
-    ArrayList<CharacterCard.Character> characters;
-    ImageIcon questionMark = new ImageIcon("images/misc/Questionmark.png");
+	public GenericDialogue(JFrame parent, ArrayList<Card> cards, Cluedo cluedo) {
 
-    public GenericDialogue(JFrame parent, ArrayList<Card> cards, Cluedo cluedo) {
+		super(parent, "Selecting Characters ...", false);
+		characters = new ArrayList<>();
 
-    	super(parent, "Selecting Characters ...", false);
-        characters = new ArrayList<>();
-        this.numPlayer = numPlayer;
-        this.cluedo = cluedo;
+		this.cluedo = cluedo;
 
+		setSize(800, 800);
 
-        setSize(800,800);
+		for (Card c : cards) {
 
-        for(Card c: cards){
+			if (c instanceof CharacterCard) {
+				JButton tmp = new JButton(new ImageIcon("images/characters/" + c.getValue() + ".png"));
+				this.add(tmp);
 
-            JButton tmp =  new JButton(new ImageIcon("images/characters/Miss Scarlet.png"));
-            tmp.setActionCommand("MISS_SCARLETTE");
-            this.add(sc);
+			} else if (c instanceof RoomCard) {
+				JButton tmp = new JButton(new ImageIcon("images/rooms/" + c.getValue() + ".png"));
+				this.add(tmp);
 
-        }
+			} else if (c instanceof WeaponCard) {
+				JButton tmp = new JButton(new ImageIcon("images/weapons/" + c.getValue() + ".png"));
+				this.add(tmp);
+			}
 
+			setLayout(new GridLayout(0, 3));
 
-        setLayout(new GridLayout(0,3));
+		}
 
-
-
-
-
-    }
-
-
+	}
 }
