@@ -22,8 +22,8 @@ public class WeaponCard extends Card {
      */
     public enum Weapon {
         CANDLESTICK,
-        DAGGER,
-        LEAD_PIPE,
+        KNIFE,
+        PIPE,
         REVOLVER,
         ROPE,
         SPANNER;

@@ -19,14 +19,6 @@ import util.CluedoError;
  */
 public class GenericDialogue extends JDialog{
 
-    JButton sc;
-    JButton mustard;
-    JButton peacock;
-    JButton white;
-    JButton green;
-    JButton plum;
-
-    int numPlayer;
     Cluedo cluedo;
 
     ArrayList<CharacterCard.Character> characters;
@@ -36,27 +28,15 @@ public class GenericDialogue extends JDialog{
 
     	super(parent, "Selecting Characters ...", false);
         characters = new ArrayList<>();
-        this.numPlayer = numPlayer;
         this.cluedo = cluedo;
-
-
         setSize(800,800);
 
         for(Card c: cards){
-
             JButton tmp =  new JButton(new ImageIcon("images/characters/Miss Scarlet.png"));
             tmp.setActionCommand("MISS_SCARLETTE");
-            this.add(sc);
-
         }
 
-
         setLayout(new GridLayout(0,3));
-
-
-
-
-
     }
 
 
