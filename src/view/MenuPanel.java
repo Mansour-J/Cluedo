@@ -5,10 +5,13 @@ import cluedo.Game;
 import util.Accusation;
 import util.CluedoError;
 
+import javax.smartcardio.Card;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
+import java.util.List;
 
 /**
  * Created by Adam on 14/08/16.
@@ -19,10 +22,12 @@ public class MenuPanel extends JPanel implements ActionListener {
     private final int BUTTON_HEIGHT = 40;
     private Cluedo cluedo;
     private Game game;
+    private JFrame jFrame;
 
-    public MenuPanel(Cluedo cluedo) {
+    public MenuPanel(JFrame jFrame, Cluedo cluedo) {
         this.cluedo = cluedo;
         this.game = cluedo.getGame();
+        this.jFrame = jFrame;
         initButtons();
         setBackground(new Color(255, 255, 255));
         setPreferredSize(new Dimension(BoardFrame.BOARD_WIDTH - 500, BoardFrame.BOARD_HEIGHT));
@@ -71,13 +76,17 @@ public class MenuPanel extends JPanel implements ActionListener {
         add(b1, BorderLayout.LINE_END);
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()){
             case "Move": break; // TODO
-            case "Show_Hand": System.out.println(cluedo.getCurrentPlayer().printCards()); break;
-            case "Suggest": Accusation.suggest(cluedo.getCurrentPlayer(), game); break;
-            case "Accuse": Accusation.accuse(cluedo.getCurrentPlayer(), game); break;
+            case "Show_Hand": System.out.println(cluedo.getCurrentPlayer().printCards());
+                List<cards.Card> cards = cluedo.getCurrentPlayer().getCards();
+                new GenericDialogue(jFrame, cards, cluedo);
+                break;
+            case "Suggest": Accusation.suggest(cluedo.getCurrentPlayer(), cluedo.getGame()); break;
+            case "Accuse": Accusation.accuse(cluedo.getCurrentPlayer(), cluedo.getGame()); break;
             case "End_Turn": cluedo.nextPlayer(); break;
             default: throw new CluedoError("Unrecognised button action command");
         }

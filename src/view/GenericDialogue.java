@@ -2,6 +2,7 @@ package view;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,15 +21,16 @@ public class GenericDialogue extends JDialog {
 
 	Cluedo cluedo;
 
-	ArrayList<CharacterCard.Character> characters;
+	List<Card> characters;
 	ImageIcon questionMark = new ImageIcon("images/misc/Questionmark.png");
 
-	public GenericDialogue(JFrame parent, ArrayList<Card> cards, Cluedo cluedo) {
+	public GenericDialogue(JFrame parent, List<Card> cards, Cluedo cluedo) {
 
     	super(parent, "Selecting Characters ...", false);
-        characters = new ArrayList<>();
+        this.characters = cards;
         this.cluedo = cluedo;
 		setSize(800, 800);
+		setVisible(true);
 
 		for (Card c : cards) {
 

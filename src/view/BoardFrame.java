@@ -30,7 +30,7 @@ public class BoardFrame extends JFrame {
         this.toolkit = getToolkit();
         this.cluedo = cluedo;
         this.canvas = new BoardCanvas(cluedo);
-        this.menuPanel = new MenuPanel(cluedo);
+        this.menuPanel = new MenuPanel(this, cluedo);
         add(menuPanel, BorderLayout.LINE_END);
 
         // Display window

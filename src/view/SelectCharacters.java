@@ -37,29 +37,29 @@ public class SelectCharacters extends JDialog implements ActionListener{
 
         setSize(800,800);
 
-        sc =  new JButton(new ImageIcon("images/characters/Miss Scarlet.png"));
+        sc =  new JButton(new ImageIcon("images/characters/MISS_SCARLETTE.png"));
         sc.setActionCommand("MISS_SCARLETTE");
         sc.addActionListener(this);
 
 
-        mustard = new JButton(new ImageIcon("images/characters/Colonel Mustard.png"));
+        mustard = new JButton(new ImageIcon("images/characters/COLENEL_MUSTARD.png"));
         mustard.setActionCommand("COLENEL_MUSTARD");
         mustard.addActionListener(this);
 
-        peacock = new JButton(new ImageIcon("images/characters/Mrs Peacock.png"));
+        peacock = new JButton(new ImageIcon("images/characters/MRS_PEACOCK.png"));
         peacock.setActionCommand("MRS_PEACOCK");
         peacock.addActionListener(this);
 
 
-        white = new JButton(new ImageIcon("images/characters/Mrs White.png"));
+        white = new JButton(new ImageIcon("images/characters/MRS_WHITE.png"));
         white.setActionCommand("MRS_WHITE");
         white.addActionListener(this);
 
-        plum = new JButton(new ImageIcon("images/characters/Professor Plum.png"));
+        plum = new JButton(new ImageIcon("images/characters/PROFESSOR_PLUM.png"));
         plum.setActionCommand("PROFESSOR_PLUM");
         plum.addActionListener(this);
 
-        green = new JButton(new ImageIcon("images/characters/Mr Green.png"));
+        green = new JButton(new ImageIcon("images/characters/THE_REVEREND_GREEN.png"));
         green.setActionCommand("THE_REVEREND_GREEN");
         green.addActionListener(this);
 
