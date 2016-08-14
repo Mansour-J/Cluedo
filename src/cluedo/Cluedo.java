@@ -77,7 +77,7 @@ public class Cluedo {
         // Create Game
         this.currentGame = new Game(players, solution, weapons, rooms, characters);
         this.board = currentGame.getBoard();
-
+        this.currentPlayer = players.get(0);
     }
 
     /**

@@ -75,9 +75,10 @@ public class MenuPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()){
             case "Move": break; // TODO
-            case "Suggest": Accusation.suggest(cluedo.getCurrentPlayer(), game);
-            case "Accuse": Accusation.accuse(cluedo.getCurrentPlayer(), game);
-            case "End_Turn": cluedo.nextPlayer();
+            case "Show_Hand": System.out.println(cluedo.getCurrentPlayer().printCards()); break;
+            case "Suggest": Accusation.suggest(cluedo.getCurrentPlayer(), game); break;
+            case "Accuse": Accusation.accuse(cluedo.getCurrentPlayer(), game); break;
+            case "End_Turn": cluedo.nextPlayer(); break;
             default: throw new CluedoError("Unrecognised button action command");
         }
     }

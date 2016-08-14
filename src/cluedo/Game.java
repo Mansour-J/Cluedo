@@ -40,13 +40,10 @@ public class Game {
         this.weapons = weapons;
         this.rooms = rooms;
         this.characters = characters;
-        return;
-
-//        setSolution(solution);
-//
-//        this.finished = false;
-//        this.board = Board.parseBoard(boardFile);
-//        board.setSpawnLocations(players);
+        setSolution(solution);
+        this.finished = false;
+        this.board = Board.parseBoard(boardFile);
+        board.setSpawnLocations(players);
     }
 
     /**
