@@ -20,11 +20,14 @@ package view;
 
 import cluedo.Cluedo;
 import cluedo.Game;
+import cluedo.Player;
 
 import java.io.*;
-import java.util.HashSet;
+import java.util.*;
+import java.util.*;
 import java.awt.*;
 import java.awt.image.*;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -45,12 +48,13 @@ public class BoardCanvas extends Canvas {
     private Font font;
     private Cluedo cluedo;
     private final Game game;
-    private final Board board = null;
+    private final Board board;
     private Image boardImage;
 
     public BoardCanvas(Cluedo cluedo) {
         this.cluedo = cluedo;
         this.game = cluedo.getGame();
+        this.board = game.getBoard();
 
         this.boardImage = loadImage("boardImage.png");
         setVisible(true);
@@ -59,48 +63,15 @@ public class BoardCanvas extends Canvas {
 
     @Override
     public void paint(Graphics g) {
-       g.drawImage(boardImage, 0, 0, null);
+        g.drawImage(boardImage, 0, 0, null);
+        drawCharacterTokens(g);
     }
 
-    public void setUpCharacter() {
-
-    }
-
-
-    private void drawMessage(String msg, Graphics g) {
-        g.setFont(font);
-        int width = board.getWidth();
-        int height = board.getHeight();
-        FontMetrics metrics = g.getFontMetrics();
-        int ascent = metrics.getAscent();
-        char[] chars = msg.toCharArray();
-        int msgWidth = metrics.charsWidth(msg.toCharArray(), 0, msg.length());
-        int msgHeight = metrics.getHeight();
-        int boxWidth = msgWidth + 30;
-        int boxHeight = msgHeight + 30;
-        int x = ((width * 30) - boxWidth) / 2;
-        int y = ((height * 30) - boxHeight) / 2;
-        g.setColor(Color.DARK_GRAY);
-        g.fillRect(x, y, boxWidth, boxHeight);
-        g.setColor(Color.yellow);
-        g.drawRect(x, y, boxWidth, boxHeight);
-        g.drawRect(x + 1, y + 1, boxWidth - 2, boxHeight - 2);
-        g.drawChars(chars, 0, chars.length, x + 15, y + 15 + ascent);
-        offscreen = null; // reset offscreen, since we want to get rid of the
-        // message
-    }
-
-
-    private Image offscreen = null;
-
-    public void update(Graphics g) {
-        if (offscreen == null) {
-            Image localOffscreen = offscreen;
-            Graphics offgc = offscreen.getGraphics();
-            // do normal redraw
-            paint(offgc);
-            // transfer offscreen to window
-            g.drawImage(localOffscreen, 0, 0, this);
+    private void drawCharacterTokens(Graphics g) {
+        for(Player player : game.getPlayers()){
+            int x = player.x();
+            int y = player.y();
+           // g.drawImage()
         }
     }
 

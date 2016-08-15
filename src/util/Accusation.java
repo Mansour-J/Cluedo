@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class Accusation {
 
-    static List<Card> cards = new ArrayList<>();
+    public static List<Card> cards = new ArrayList<>();
 
     /**
      * Accuse a player of the crime
