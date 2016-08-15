@@ -5,7 +5,6 @@ import cluedo.Game;
 import util.Accusation;
 import util.CluedoError;
 
-import javax.smartcardio.Card;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
