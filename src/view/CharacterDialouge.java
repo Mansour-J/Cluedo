@@ -2,10 +2,14 @@ package view;
 
 import cluedo.Cluedo;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class CharacterDialouge {
+public class CharacterDialouge extends JDialog{
 
 	public CharacterDialouge(JFrame frame, Cluedo cluedo) {
 
@@ -22,5 +26,7 @@ public class CharacterDialouge {
 
 
 	}
+
+
 
 }
