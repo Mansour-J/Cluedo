@@ -78,9 +78,6 @@ public class SelectCharacters extends JDialog implements ActionListener{
         this.add(white);
         this.add(green);
         this.add(plum);
-
-
-
     }
 
     @Override

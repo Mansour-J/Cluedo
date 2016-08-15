@@ -27,6 +27,7 @@ public class CharacterCard extends Card {
         return cards;
     }
 
+
     /**
      * The various characters in the game
      */

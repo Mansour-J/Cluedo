@@ -38,8 +38,8 @@ public class AccusationDialog extends JDialog implements ActionListener {
 		this.cluedo = cluedo;
 		setSize(800, 800);
 		setVisible(true);
-
 		this.cards = cards;
+		setLayout(new GridLayout(0, 3));
 
 		for (Card c : cards) {
 
@@ -56,18 +56,17 @@ public class AccusationDialog extends JDialog implements ActionListener {
 			} else if (c instanceof WeaponCard) {
 				JButton tmp = new JButton(new ImageIcon("images/weapons/" + c.getValue() + ".png"));
 				tmp.setActionCommand(String.valueOf(index++));
-
 				this.add(tmp);
 			}
-
-			setLayout(new GridLayout(0, 3));
-
 		}
+
+		pack();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Accusation.cards.add(this.cards.get(index));
+		Accusation.selectedCards.add(this.cards.get(Integer.valueOf(e.getActionCommand())));
+		System.out.println(this.cards.get(index));
 		dispose();
 
 	}

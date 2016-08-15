@@ -47,15 +47,11 @@ public class BoardCanvas extends Canvas {
     private static final String[] preferredFonts = {"Courier New", "Arial", "Times New Roman"};
     private Font font;
     private Cluedo cluedo;
-    private final Game game;
-    private final Board board;
+
     private Image boardImage;
 
     public BoardCanvas(Cluedo cluedo) {
         this.cluedo = cluedo;
-        this.game = cluedo.getGame();
-        this.board = game.getBoard();
-
         this.boardImage = loadImage("boardImage.png");
         setVisible(true);
     }
@@ -68,11 +64,11 @@ public class BoardCanvas extends Canvas {
     }
 
     private void drawCharacterTokens(Graphics g) {
-        for(Player player : game.getPlayers()){
-            int x = player.x();
-            int y = player.y();
-           // g.drawImage()
-        }
+//        for(Player player : cluedo.getGame().getPlayers()){
+//            int x = player.x();
+//            int y = player.y();
+//           // g.drawImage()
+//        }
     }
 
     /**

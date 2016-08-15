@@ -84,8 +84,8 @@ public class MenuPanel extends JPanel implements ActionListener {
                 List<cards.Card> cards = cluedo.getCurrentPlayer().getCards();
                 new GenericDialogue(jFrame, cards, cluedo);
                 break;
-            case "Suggest": Accusation.suggest(cluedo.getCurrentPlayer(), cluedo.getGame()); break;
-            case "Accuse": Accusation.accuse(cluedo.getCurrentPlayer(), cluedo.getGame()); break;
+            case "Suggest": Accusation.suggest(cluedo.getCurrentPlayer(), cluedo, jFrame); break;
+            case "Accuse": Accusation.accuse(cluedo.getCurrentPlayer(), cluedo, jFrame); break;
             case "End_Turn": cluedo.nextPlayer(); break;
             default: throw new CluedoError("Unrecognised button action command");
         }
