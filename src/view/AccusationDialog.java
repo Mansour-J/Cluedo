@@ -23,51 +23,46 @@ import util.CluedoError;
  */
 public class AccusationDialog extends JDialog implements ActionListener {
 
-	Cluedo cluedo;
+    Cluedo cluedo;
 
-	List<Card> characters;
-	ImageIcon questionMark = new ImageIcon("images/misc/Questionmark.png");
-	List<Card> cards;
+    List<Card> characters;
+    ImageIcon questionMark = new ImageIcon("images/misc/Questionmark.png");
+    List<Card> cards;
 
-	int index = -1;
+    int index = -1;
 
-	public AccusationDialog(JFrame parent, List<Card> cards, Cluedo cluedo) {
+    public AccusationDialog(JFrame parent, List<Card> cards, Cluedo cluedo) {
+        super(parent, "Selecting Characters ...", false);
+        this.characters = cards;
+        this.cluedo = cluedo;
+        setSize(800, 800);
+        setVisible(true);
 
-		super(parent, "Selecting Characters ...", false);
-		this.characters = cards;
-		this.cluedo = cluedo;
-		setSize(800, 800);
-		setVisible(true);
-		this.cards = cards;
-		setLayout(new GridLayout(0, 3));
+        for (Card c : cards) {
 
-		for (Card c : cards) {
+            if (c instanceof CharacterCard) {
+                JButton tmp = new JButton(new ImageIcon("images/characters/" + c.getValue() + ".png"));
+                this.add(tmp);
 
-			if (c instanceof CharacterCard) {
-				JButton tmp = new JButton(new ImageIcon("images/characters/" + c.getValue() + ".png"));
-				tmp.setActionCommand(String.valueOf(index++));
-				this.add(tmp);
+            } else if (c instanceof RoomCard) {
+                JButton tmp = new JButton(new ImageIcon("images/rooms/" + c.getValue() + ".png"));
+                this.add(tmp);
 
-			} else if (c instanceof RoomCard) {
-				JButton tmp = new JButton(new ImageIcon("images/rooms/" + c.getValue() + ".png"));
-				tmp.setActionCommand(String.valueOf(index++));
-				this.add(tmp);
+            } else if (c instanceof WeaponCard) {
+                JButton tmp = new JButton(new ImageIcon("images/weapons/" + c.getValue() + ".png"));
+                this.add(tmp);
+            }
 
-			} else if (c instanceof WeaponCard) {
-				JButton tmp = new JButton(new ImageIcon("images/weapons/" + c.getValue() + ".png"));
-				tmp.setActionCommand(String.valueOf(index++));
-				this.add(tmp);
-			}
-		}
+            setLayout(new GridLayout(0, 3));
 
-		pack();
-	}
+        }
+    }
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		Accusation.selectedCards.add(this.cards.get(Integer.valueOf(e.getActionCommand())));
-		System.out.println(this.cards.get(index));
-		dispose();
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Accusation.selectedCards.add(this.cards.get(Integer.valueOf(e.getActionCommand())));
+        System.out.println(this.cards.get(index));
+        dispose();
 
-	}
+    }
 }

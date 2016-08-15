@@ -5,11 +5,13 @@ import cards.CharacterCard;
 import cards.RoomCard;
 import cards.WeaponCard;
 import cluedo.Cluedo;
+import sun.net.www.content.text.Generic;
 import view.AccusationDialog;
 import view.Board;
 import cluedo.Game;
 import cluedo.Player;
 import squares.RoomSquare;
+import view.GenericDialogue;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -48,8 +50,6 @@ public class Accusation {
      */
     public static void suggest(Player currentPlayer, Cluedo cluedo, JFrame parent) {
         Game currentGame = cluedo.getGame();
-
-        Board board = currentGame.getBoard();
         List<Card> solution = getWeaponCharacterRoom(currentPlayer, cluedo, parent);
         Card cardProvedWrong = proveSolutionWrong(solution, currentGame.getPlayers());
 
@@ -73,9 +73,9 @@ public class Accusation {
         // Character
         List<CharacterCard> characterCards = CharacterCard.generateObjects();
         final List<Card> cards = new ArrayList<>();
-        characterCards.forEach(c -> cards.add(c));
-        JDialog accusation = new AccusationDialog(parent, cards, cluedo);
-        accusation.setVisible(true);
+        for(CharacterCard c : characterCards)
+            cards.add(c);
+        new GenericDialogue(parent, cards, cluedo);
         while (selectedCards.size() == 0) {
             // Do nothing
             int index = 0;
