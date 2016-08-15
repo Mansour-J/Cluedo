@@ -9,6 +9,7 @@ import cluedo.Game;
 import cluedo.Player;
 import squares.RoomSquare;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,6 +18,8 @@ import java.util.List;
  * Util to help Cluedo with making an accusation
  */
 public class Accusation {
+
+    static List<Card> cards = new ArrayList<>();
 
     /**
      * Accuse a player of the crime
@@ -42,7 +45,7 @@ public class Accusation {
     public static void suggest(Player currentPlayer, Game currentGame) {
         Board board = currentGame.getBoard();
         List<Card> solution = getWeaponCharacterRoom(currentPlayer, board);
-        Card cardProvedWrong = proveSolutionWrong(currentPlayer, solution, currentGame.getPlayers());
+        Card cardProvedWrong = proveSolutionWrong(solution, currentGame.getPlayers());
 
         // Check solution
         if (cardProvedWrong == null) { // They are correct
@@ -61,23 +64,15 @@ public class Accusation {
      */
     public static List<Card> getWeaponCharacterRoom(Player currentPlayer, Board board) {
 
-        // Print characters to accuse
-        System.out.println("Who would you like to accuse?");
+        // Character
         List<CharacterCard> characterCards = CharacterCard.generateObjects();
-        System.out.println(characterCards.toString() + "\n(enter number between 1 and 6)\n");
+        CharacterCard characterAccused = null;
+        // TODO
 
-        // Get characters
-        int index = IO.getIntBetweenBounds("", 1, characterCards.size()) - 1;
-        CharacterCard characterAccused = characterCards.get(index);
-
-        // Print potential weapons
-        System.out.println("What weapon killed the character?");
+        // Weapon
         List<WeaponCard> weaponsCards = WeaponCard.generateObjects();
-        System.out.println(weaponsCards.toString() + "\n(enter number between 1 and 6)\n");
-
-        // Get weapon
-        index = IO.getIntBetweenBounds("", 1, weaponsCards.size()) - 1;
-        WeaponCard weaponAccused = weaponsCards.get(index);
+        CharacterCard weaponAccused = null;
+        // TODO
 
         // RoomSquare
         int playerX = currentPlayer.x();
@@ -98,17 +93,11 @@ public class Accusation {
 
     /**
      * Prove the solution the currentPlayer provided to be wrong.
-     *
-     * @param currentPlayer current player - used so they don't check there cards, and so we can iterate round the players
-     *                      in the correct order trying to find a card to prove them wrong
      * @param solution      the three solution cards
      * @param players       list of players in the game
      * @return The card that proved the player wrong, or null if they are correct
      */
-    public static Card proveSolutionWrong(Player currentPlayer, List<Card> solution, List<Player> players) {
-        int currentPlayerIndex = players.indexOf(currentPlayer);
-        int playersIndex = currentPlayerIndex + 1;
-
+    public static Card proveSolutionWrong(List<Card> solution, List<Player> players) {
         for (Player p : players) { // loop over the players excluding the currentPLayer
             List<Card> playersCards = p.getCards();
             for (Card c1 : playersCards) {
