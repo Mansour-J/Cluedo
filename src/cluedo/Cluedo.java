@@ -39,8 +39,8 @@ public class Cluedo {
      * remaining cards to all the players.
      */
     public void setupGame(List<CharacterCard.Character> choosenCharacters) {
-    	System.out.println(choosenCharacters);
-    	// Create the Card objects and init the player list
+        System.out.println(choosenCharacters);
+        // Create the Card objects and init the player list
         List<CharacterCard> characters = CharacterCard.generateObjects();
         List<WeaponCard> weapons = WeaponCard.generateObjects();
         List<RoomCard> rooms = RoomCard.generateObjects();
@@ -79,8 +79,12 @@ public class Cluedo {
         this.currentGame = new Game(players, solution, weapons, rooms, characters);
         this.board = currentGame.getBoard();
         this.currentPlayer = players.get(0);
-        PathFinder.findPath(board, board.getBoard()[7][3], board.getBoard()[7][6]);
-        int isad = 0;
+
+        Square start = board.getBoard()[7][1];
+        Square end = board.getBoard()[7][9];
+        System.out.println(start.toString() + " " + end.toString());
+        List<Square> path = PathFinder.findPath(board, start, end);
+        System.out.println(path.toString());
 
     }
 
@@ -158,10 +162,10 @@ public class Cluedo {
     /**
      * Advance the currentPlayer to be the next player. This is the player after the the currentPlayer in players
      */
-    public void nextPlayer(){
-        if(currentPlayer == null) {
+    public void nextPlayer() {
+        if (currentPlayer == null) {
             currentPlayer = players.get(0);
-        }else{
+        } else {
             int index = players.indexOf(currentPlayer);
             index = (index == players.size() - 1) ? 0 : index + 1;
             currentPlayer = players.get(index);
@@ -172,6 +176,7 @@ public class Cluedo {
 
     /**
      * Constructs a new Cluedo Game
+     *
      * @param args
      */
     public static void main(String args[]) {
@@ -180,7 +185,12 @@ public class Cluedo {
 
     /* Getters and setters */
 
-    public Player getCurrentPlayer(){ return this.currentPlayer;}
-    public Game getGame(){return this.currentGame;}
+    public Player getCurrentPlayer() {
+        return this.currentPlayer;
+    }
+
+    public Game getGame() {
+        return this.currentGame;
+    }
 
 }

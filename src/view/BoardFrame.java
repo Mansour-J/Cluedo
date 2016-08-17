@@ -100,7 +100,6 @@ public class BoardFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-
         EventQueue.invokeLater(() -> {
             Cluedo cluedo = new Cluedo();
             BoardFrame ex = new BoardFrame("Adam", cluedo, new KeyListener[0]);

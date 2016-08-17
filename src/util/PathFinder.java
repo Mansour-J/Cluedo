@@ -23,53 +23,45 @@ public class PathFinder {
      * @return
      */
     public static List<Square> findPath(Board brd, Square fromTile, Square toTile) {
-        /*
-		 *This is a modified A* search, where we can have multiple start and finish nodes,
-		 *and we only return the shortest route between the combination of them.
-		 *
-		 *For this reason, we have to maintain multiple visited sets, as we could be searching
-		 *the same node multiple times from different paths.
-		 */
-
         board = brd;
 
-        Map<Square, Set<Square>> visitMap = new HashMap<>();
-        List<SearchNode> fringe = new ArrayList<>();
+        Set<Square> visited = new HashSet<>();
+        Queue<SearchNode> fringe = new PriorityQueue<>();
         fringe.add(new SearchNode(fromTile, null, toTile, 0));
         SearchNode current = null;
 
         //Perform the A* search
         while (!fringe.isEmpty()) {
-            current = fringe.get(0);
+            current = fringe.poll();
 
-            if (current.node == current.target)
+            if (current.node == current.target) // At the destination
                 break;
 
-            Set<Square> visited = visitMap.get(current.target);
-            if(visited == null)
-                visited = new HashSet<>();
-
-            fringe.remove(current);
-            if (!visited.add(current.node)) // Have we visited it before?
+            // Have we visited it before
+            if (visited.contains(current.node))
                 continue;
+            else
+                visited.add(current.node);
 
-
-            // Search surrounding tiles, and add them to the fringe
+            // Search surrounding tiles, and add them to the fringe if the paths valid
             for (Board.Direction d : Board.Direction.values()) {
-                Square t = board.getTile(current.node, d);
-                if (t != null && t.isVaccantSquare() && current.node.isTransitionAllowed(t))
-                    fringe.add(new SearchNode(t, current, current.target, current.dist + 1));
+                Square next = board.getTile(current.node, d);
 
+                if (next != null && next.isVaccantSquare() && current.node.isTransitionAllowed(next)) {
+                    if(next == null)
+                        throw new CluedoError("Shouldnt be null");
+                    fringe.add(new SearchNode(next, current, current.target, current.dist + 1));
+                }
             }
         }
+
+        // No path found, so throw an exception
+        if (current == null || current.node != current.target)
+            throw new CluedoError("No Path Found");
+
+
+        // Found a path lets follow the links backwards to build the path list
         List<Square> path = new ArrayList<>();
-
-        // If it didn't reach the node, there is no path available, so return an empty path
-        if (current == null || current.node != current.target) {
-            return path;
-        }
-
-        // Follow the links backwards to build the path list
         while (current.parent != null) {
             path.add(0, current.node);
             current = current.parent;
@@ -77,23 +69,35 @@ public class PathFinder {
         return path;
     }
 
-    private static class SearchNode {
+
+    private static class SearchNode implements Comparable{
         public Square node;
-        public SearchNode parent ;
+        public SearchNode parent;
         public Square target;
         public double cost;
         public double dist;
 
         public SearchNode(Square node, SearchNode parent, Square target, double dist) {
+            assert node != null && target != null;
             this.node = node;
             this.parent = parent;
             this.dist = dist;
             this.target = target;
+            if(node == null || target == null)
+                throw new CluedoError("Shouldnt be null");
             this.cost = board.cost(node, target);
         }
 
-        public double heuristic() {
+        public double heuristic(){
             return dist + cost;
+        }
+
+        public int compareTo(Object o) {
+            if(o instanceof SearchNode){
+                SearchNode s = (SearchNode) o;
+                return (int)(this.heuristic() - s.heuristic());
+            }
+            return -1;
         }
     }
 }

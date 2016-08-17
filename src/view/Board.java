@@ -98,23 +98,27 @@ public class Board {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 if (board[x][y] == square) {
-
+                    int x2 = 0;
+                    int y2 = 0;
                     switch (dir) {
                         case UP:
-                            y--;
+                            y2 = y-1;
                             break;
                         case DOWN:
-                            y++;
+                            y2 = y+1;
                             break;
                         case LEFT:
-                            x--;
+                            x2 = x-1;
                             break;
                         case RIGHT:
-                            x++;
+                            x2 = x+1;
                             break;
                     }
-                    if(x > 0 || x < width || y > 0 || y < height)
-                        return board[x][y];
+                    if(x2 >= 0 && x2 < width && y2 >= 0 && y2 < height) {
+                        System.out.printf("Width %d, Height: %d", width, height);
+                        System.out.printf("X %d, Y: %d \n", x2, y2);
+                        return board[x2][y2];
+                    }
                 }
             }
         }
@@ -253,19 +257,27 @@ public class Board {
         int srcY = -1;
         int destX = -1;
         int destY = -1;
+        List<Square> squares = new ArrayList<>();
+        for(Square[] row :  board){
+            squares.addAll(Arrays.asList(row));
+        }
+
+        if(!squares.contains(src) || !squares.contains(dest))
+            throw new CluedoError("Square not found");
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 if (board[x][y] == src) {
                     srcX = x;
                     srcY = y;
-                } else if (board[x][y] == dest) {
+                } if (board[x][y] == dest) {
                     destX = x;
                     destY = y;
                 }
             }
         }
-        
+
+
         if (srcX == -1 || srcY == -1)
             throw new CluedoError("Source square wasn't found");
         if (destX == -1 || destY == -1)

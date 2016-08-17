@@ -101,7 +101,8 @@ public class MenuPanel extends JPanel implements ActionListener {
 
 		switch (e.getActionCommand()) {
 			case "Move":
-				break; // TODO
+				new DiceDialogue(jFrame, cluedo);
+				break;
 
 			case "Show_Hand":
 				System.out.println(cluedo.getCurrentPlayer().printCards());

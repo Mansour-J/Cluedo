@@ -7,6 +7,7 @@ import cards.WeaponCard;
 import cluedo.Cluedo;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,9 +36,9 @@ public class DiceDialogue extends JDialog implements ActionListener {
         setLayout(new GridLayout(0, 2));
 
         dice1 = new JButton(new ImageIcon(pathToDice + 4 + ".png"));
-        dice1.setSize(10,10);
+        dice1.setSize(10, 10);
         dice2 = new JButton(new ImageIcon(pathToDice + 4 + ".png"));
-        dice2.setSize(10,10);
+        dice2.setSize(10, 10);
 
 
         dice1.addActionListener(this);
@@ -46,6 +47,8 @@ public class DiceDialogue extends JDialog implements ActionListener {
         add(dice2);
         dice1.setVisible(true);
         dice2.setVisible(true);
+        dice1.setBorder(BorderFactory.createEmptyBorder());
+        dice2.setBorder(BorderFactory.createEmptyBorder());
         run();
     }
 
@@ -64,8 +67,33 @@ public class DiceDialogue extends JDialog implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        // Stop timer and show dice for 100 millisec
         timer.stop();
-        int result = dice1Value + dice2Value;
-        System.out.println("Total " + result);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
+        }
+
+        // Remove buttons
+        dice1.setVisible(false);
+        dice2.setVisible(false);
+        remove(dice1);
+        remove(dice2);
+
+        int total = dice1Value + dice2Value;
+
+        setLayout(new GridLayout(0, 1)); // We only want one item displayed
+
+        // Create text field and set font and match size with parent
+        JTextField textField = new JTextField("You rolled: " + total);
+        Font bigFont = textField.getFont().deriveFont(20f);
+        textField.setFont(bigFont);
+        textField.setSize(300,300);
+
+        // Align in centre and remove the border, and add it
+        textField.setHorizontalAlignment(JTextField.CENTER);
+        textField.setBorder(BorderFactory.createEmptyBorder());
+        add(textField);
     }
 }
