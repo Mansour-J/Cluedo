@@ -33,9 +33,10 @@ public class Board {
 
     /**
      * Construct a new Board object
+     *
      * @param width
      * @param height
-     * @param rooms maps the key character (in the board.txt file) to the room square
+     * @param rooms  maps the key character (in the board.txt file) to the room square
      */
     public Board(int width, int height, Map<Character, RoomSquare> rooms) {
         this.width = width;
@@ -49,6 +50,7 @@ public class Board {
     /**
      * Sets the list of players initial location, should be called at the start of the game.
      * Gives the players a random location from the field spawnLocations.
+     *
      * @param players
      */
     public void setSpawnLocations(List<Player> players) {
@@ -72,6 +74,7 @@ public class Board {
 
     /**
      * Gets the Point on the board that the stair square teleports to
+     *
      * @param start
      * @return
      */
@@ -91,11 +94,39 @@ public class Board {
         return null;
     }
 
+    public Square getTile(Square square, Direction dir) {
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                if (board[x][y] == square) {
+
+                    switch (dir) {
+                        case UP:
+                            y--;
+                            break;
+                        case DOWN:
+                            y++;
+                            break;
+                        case LEFT:
+                            x--;
+                            break;
+                        case RIGHT:
+                            x++;
+                            break;
+                    }
+                    if(x > 0 || x < width || y > 0 || y < height)
+                        return board[x][y];
+                }
+            }
+        }
+        return null; // No square found
+    }
+
         /* Board parser methods */
 
     /**
      * Parses the board from the text file using a scanner. Calls parseRooms and parseBoardLayout, both of which assist
      * this method.
+     *
      * @param filename
      * @return
      */
@@ -130,6 +161,7 @@ public class Board {
 
     /**
      * Parse the room declarations
+     *
      * @param sc
      */
     private static Map<Character, RoomSquare> parseRooms(Scanner sc) {
@@ -216,15 +248,45 @@ public class Board {
         }
     }
 
+    public int cost(Square src, Square dest) {
+        int srcX = -1;
+        int srcY = -1;
+        int destX = -1;
+        int destY = -1;
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                if (board[x][y] == src) {
+                    srcX = x;
+                    srcY = y;
+                } else if (board[x][y] == dest) {
+                    destX = x;
+                    destY = y;
+                }
+            }
+        }
+        
+        if (srcX == -1 || srcY == -1)
+            throw new CluedoError("Source square wasn't found");
+        if (destX == -1 || destY == -1)
+            throw new CluedoError("Destination square wasn't found");
+
+        return Math.abs(srcX - destX) + Math.abs(srcY - destY);
+    }
+
     /* Getters and Setters */
 
     public int getWidth() {
         return this.width;
     }
+
     public int getHeight() {
         return this.height;
     }
-    public Square[][] getBoard(){ return this.board;}
+
+    public Square[][] getBoard() {
+        return this.board;
+    }
 
     @Override
     public String toString() {

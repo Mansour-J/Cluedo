@@ -1,11 +1,16 @@
 package view;
 
+import cards.CharacterCard;
 import cluedo.Cluedo;
 import cluedo.Game;
 import util.Accusation;
 import util.CluedoError;
 
 import javax.swing.*;
+
+import cards.Card;
+import cards.WeaponCard;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -79,15 +84,30 @@ public class MenuPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()){
-            case "Move": break; // TODO
+            case "Move": new DiceDialogue(jFrame, cluedo); break;
             case "Show_Hand": System.out.println(cluedo.getCurrentPlayer().printCards());
-                List<cards.Card> cards = cluedo.getCurrentPlayer().getCards();
-                new GenericDialogue(jFrame, cards, cluedo);
-                break;
-            case "Suggest": Accusation.suggest(cluedo.getCurrentPlayer(), cluedo, jFrame); break;
-            case "Accuse": Accusation.accuse(cluedo.getCurrentPlayer(), cluedo, jFrame); break;
+            List<cards.Card> cards = cluedo.getCurrentPlayer().getCards();
+            new GenericDialogue(jFrame, cards, cluedo);
+            break;
+            case "Suggest": suggest();
+            break;
+            case "Accuse": suggest(); break;
             case "End_Turn": cluedo.nextPlayer(); break;
             default: throw new CluedoError("Unrecognised button action command");
         }
+    }
+
+
+    public void suggest(){
+        List<WeaponCard> weaponCards = WeaponCard.generateObjects();
+        final List<Card> cards = new ArrayList<>();
+        weaponCards.forEach(c -> cards.add(c));
+        AccusationDialog d = new AccusationDialog(jFrame, cards, cluedo);
+        d.setVisible(true);
+        cards.clear();
+        List<CharacterCard> characterCards = CharacterCard.generateObjects();
+        characterCards.forEach(c -> cards.add(c));
+        AccusationDialog s = new AccusationDialog(jFrame, cards, cluedo);
+        s.setVisible(true);
     }
 }

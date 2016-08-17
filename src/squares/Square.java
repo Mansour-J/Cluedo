@@ -30,6 +30,8 @@ public abstract class Square {
         player = null;
     }
 
+    public boolean isVaccantSquare(){ return player == null; }
+
     public abstract boolean isTransitionAllowed(Square fromSquare);
 
 

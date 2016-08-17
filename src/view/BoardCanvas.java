@@ -89,6 +89,10 @@ public class BoardCanvas extends Canvas {
         return img;
     }
 
+    public void move(){
+
+    }
+
     /**
      * Load an image from the file system, using a given filename.
      *

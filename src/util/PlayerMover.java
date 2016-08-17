@@ -12,6 +12,7 @@ import squares.StairSquare;
  */
 public class PlayerMover {
 
+    static int stepsLeft = 0;
     /**
      * Move a player from the start point to the end point on the board
      * @param board
@@ -129,5 +130,11 @@ public class PlayerMover {
         board[x][min].leaveSquare();
         board[x][endY].enterSquare(player);
         player.setPos(x, endY);
+    }
+
+
+    public static void movePlayer(int num){
+        stepsLeft = num;
+
     }
 }

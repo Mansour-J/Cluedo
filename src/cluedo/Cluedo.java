@@ -8,6 +8,7 @@ import squares.Square;
 import util.Accusation;
 import util.CluedoError;
 import util.IO;
+import util.PathFinder;
 import view.Board;
 import view.BoardFrame;
 
@@ -78,6 +79,9 @@ public class Cluedo {
         this.currentGame = new Game(players, solution, weapons, rooms, characters);
         this.board = currentGame.getBoard();
         this.currentPlayer = players.get(0);
+        PathFinder.findPath(board, board.getBoard()[7][3], board.getBoard()[7][6]);
+        int isad = 0;
+
     }
 
     /**
