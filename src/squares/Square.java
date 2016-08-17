@@ -34,5 +34,8 @@ public abstract class Square {
 
     public abstract boolean isTransitionAllowed(Square fromSquare);
 
-
+    @Override
+    public boolean equals(Object obj) {
+       return this == obj;
+    }
 }

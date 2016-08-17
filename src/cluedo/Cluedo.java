@@ -5,10 +5,7 @@ import cards.CharacterCard;
 import cards.RoomCard;
 import cards.WeaponCard;
 import squares.Square;
-import util.Accusation;
-import util.CluedoError;
-import util.IO;
-import util.PathFinder;
+import util.*;
 import view.Board;
 import view.BoardFrame;
 
@@ -80,25 +77,27 @@ public class Cluedo {
         this.board = currentGame.getBoard();
         this.currentPlayer = players.get(0);
 
-        Square start = board.getBoard()[7][1];
-        Square end = board.getBoard()[7][9];
-        System.out.println(start.toString() + " " + end.toString());
+        Point start = new Point(1,1);
+        Point end = new Point(6,12);
+        System.out.println("Finding: " + start.toString() + " " + end.toString());
+        System.out.println(board.getBoard()[start.getX()][start.getY()]);
+        System.out.println(board.getBoard()[end.getX()][end.getY()]);
+
         List<Square> path = PathFinder.findPath(board, start, end);
         System.out.println(path.toString());
 
     }
 
-    /**
-     * Called when its the players turn to move, performs dice roll and physical movement of the player
-     *
-     * @param p
-     */
-    public void movePlayer(Player p) {
-        int diceRoll = (int) (Math.random() * 6 + 1) + (int) (Math.random() * 6 + 1); // Assuming 2 x 6 sided die
-        System.out.println("You rolled: " + diceRoll);
-        while (diceRoll > 0) {
-            diceRoll = movePlayerHelper(diceRoll, p);
-        }
+
+    public void movePlayer(int diceRoll) {
+        Point start = new Point(0,1);
+        Point end = new Point(7,8);
+        System.out.println("Finding: " + start.toString() + " " + end.toString());
+        System.out.println(board.getBoard()[start.getX()][start.getY()]);
+        System.out.println(board.getBoard()[end.getX()][end.getY()]);
+
+        List<Square> path = PathFinder.findPath(board, start, end);
+        System.out.println(path.toString());
     }
 
     /**
