@@ -46,19 +46,21 @@ public class AccusationDialog extends JDialog implements ActionListener {
 			if (c instanceof CharacterCard) {
 				JButton tmp = new JButton(new ImageIcon("images/characters/" + c.getValue() + ".png"));
 				tmp.addActionListener(this);
-				tmp.setActionCommand(String.valueOf(index++));
+				tmp.setActionCommand(String.valueOf(++index));
 				this.add(tmp);
 
 			} else if (c instanceof RoomCard) {
 				JButton tmp = new JButton(new ImageIcon("images/rooms/" + c.getValue() + ".png"));
 				tmp.addActionListener(this);
-				tmp.setActionCommand(String.valueOf(index++));
+				tmp.setActionCommand(String.valueOf(++index));
 				this.add(tmp);
 
 			} else if (c instanceof WeaponCard) {
 				JButton tmp = new JButton(new ImageIcon("images/weapons/" + c.getValue() + ".png"));
 				tmp.addActionListener(this);
-				tmp.setActionCommand(String.valueOf(index++));
+				int z = ++index;
+				tmp.setActionCommand(String.valueOf(z));
+
 				this.add(tmp);
 			}
 		}
@@ -70,7 +72,7 @@ public class AccusationDialog extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		Accusation.selectedCards.add(this.cards.get(Integer.valueOf(e.getActionCommand())));
-		System.out.println(this.cards.get(index));
+		System.err.println(this.cards.get(Integer.valueOf(e.getActionCommand())));
 		dispose();
 
 
