@@ -4,15 +4,13 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import cards.Card;
 import cards.*;
 import cards.CharacterCard;
 import cluedo.Cluedo;
+import util.CluedoError;
 
 /**
  * Created by javahemans on 14/08/16.
@@ -31,24 +29,30 @@ public class GenericDialogue extends JDialog {
         this.cluedo = cluedo;
 		setSize(800, 800);
 		setVisible(true);
+		setLayout(new GridLayout(3, 3));
 
 		for (Card c : cards) {
+			JButton tmp;
+			String path;
 
 			if (c instanceof CharacterCard) {
-				JButton tmp = new JButton(new ImageIcon("images/characters/" + c.getValue() + ".png"));
-				this.add(tmp);
+				path = "images/characters/" + c.getValue() + ".png";
 
 			} else if (c instanceof RoomCard) {
-				JButton tmp = new JButton(new ImageIcon("images/rooms/" + c.getValue() + ".png"));
-				this.add(tmp);
+				path = "images/rooms/" + c.getValue() + ".png";
 
 			} else if (c instanceof WeaponCard) {
-				JButton tmp = new JButton(new ImageIcon("images/weapons/" + c.getValue() + ".png"));
-				this.add(tmp);
+				path = "images/weapons/" + c.getValue() + ".png";
+
+			} else{
+				throw new CluedoError("Unexpected card");
 			}
 
-			setLayout(new GridLayout(0, 3));
-
+			ImageIcon imageIcon = new ImageIcon(path);
+			tmp = new JButton(imageIcon);
+			tmp.setSize(20,70);
+			add(tmp);
+			tmp.setBorder(BorderFactory.createEmptyBorder());
 		}
 	}
 }

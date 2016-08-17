@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by javahemans on 14/08/16.
@@ -40,36 +40,32 @@ public class SelectCharacters extends JDialog implements ActionListener {
 
 		sc = new JButton(new ImageIcon("images/characters/MISS_SCARLETTE.png"));
 		sc.setActionCommand("MISS_SCARLETTE");
-		sc.addActionListener(this);
 
 		mustard = new JButton(new ImageIcon("images/characters/COLENEL_MUSTARD.png"));
 		mustard.setActionCommand("COLENEL_MUSTARD");
-		mustard.addActionListener(this);
 
 		peacock = new JButton(new ImageIcon("images/characters/MRS_PEACOCK.png"));
 		peacock.setActionCommand("MRS_PEACOCK");
-		peacock.addActionListener(this);
 
 		white = new JButton(new ImageIcon("images/characters/MRS_WHITE.png"));
 		white.setActionCommand("MRS_WHITE");
-		white.addActionListener(this);
 
 		plum = new JButton(new ImageIcon("images/characters/PROFESSOR_PLUM.png"));
 		plum.setActionCommand("PROFESSOR_PLUM");
-		plum.addActionListener(this);
 
 		green = new JButton(new ImageIcon("images/characters/THE_REVEREND_GREEN.png"));
 		green.setActionCommand("THE_REVEREND_GREEN");
-		green.addActionListener(this);
 
 		setLayout(new GridLayout(0, 3));
 
-		this.add(sc);
-		this.add(mustard);
-		this.add(peacock);
-		this.add(white);
-		this.add(green);
-		this.add(plum);
+		java.util.List<JButton> buttons  = Arrays.asList(sc, mustard, peacock, white, plum, green);
+		for(JButton b : buttons) {
+			b.addActionListener(this);
+			b.setBorder(BorderFactory.createEmptyBorder());
+			add(b);
+			b.setSize(40,40);
+		}
+
 	}
 
 	@Override
