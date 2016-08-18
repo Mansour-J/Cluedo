@@ -43,6 +43,8 @@ import javax.swing.*;
  */
 public class BoardCanvas extends Canvas {
     private static final String IMAGE_PATH = "images/";
+    private static final String CHARACTER_IMAGE_PATH = "images/character_tokens/";
+
 
     private static final String[] preferredFonts = {"Courier New", "Arial", "Times New Roman"};
     private Font font;
@@ -64,11 +66,15 @@ public class BoardCanvas extends Canvas {
     }
 
     private void drawCharacterTokens(Graphics g) {
-//        for(Player player : cluedo.getGame().getPlayers()){
-//            int x = player.x();
-//            int y = player.y();
-//           // g.drawImage()
-//        }
+        if(cluedo.getGame() == null || cluedo.getGame().getPlayers() == null)
+            return;
+
+        for(Player player : cluedo.getGame().getPlayers()){
+            int x = player.x();
+            int y = player.y();
+            Image img = loadImage(CHARACTER_IMAGE_PATH + player.getCharacter().toString() + ".png");
+            g.drawImage(img, x*20 , y*20, 20, 20, null);
+        }
     }
 
     /**
@@ -90,7 +96,6 @@ public class BoardCanvas extends Canvas {
     }
 
     public void move(){
-
     }
 
     /**

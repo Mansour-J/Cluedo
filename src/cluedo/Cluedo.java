@@ -187,7 +187,7 @@ public class Cluedo {
     public Player getCurrentPlayer() {
         return this.currentPlayer;
     }
-
+    public List<Player> getPlayers() {return this.players; }
     public Game getGame() {
         return this.currentGame;
     }
