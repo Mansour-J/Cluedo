@@ -95,5 +95,6 @@ public class DiceDialogue extends JDialog implements ActionListener {
         textField.setHorizontalAlignment(JTextField.CENTER);
         textField.setBorder(BorderFactory.createEmptyBorder());
         add(textField);
+        cluedo.updateDiceRoll(total);
     }
 }

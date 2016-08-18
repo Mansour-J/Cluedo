@@ -14,7 +14,7 @@ public class PathFinder {
 
     static Board board;
 
-    public static List<Square> findPath(Board brd, Point src, Point dest) {
+    public static List<Point> findPath(Board brd, Point src, Point dest) {
         board = brd;
 
         Set<Point> visited = new HashSet<>();
@@ -59,11 +59,11 @@ public class PathFinder {
 
 
         // Found a path lets follow the links backwards to build the path list
-        List<Square> path = new ArrayList<>();
+        List<Point> path = new ArrayList<>();
         while (current.parent != null) {
             System.out.println(current.node);
-            Square s = board.getBoard()[current.node.getX()][current.node.getX()];
-            path.add(0, s);
+            Point p = new Point( current.node.getX() , current.node.getX());
+            path.add(0, p); // Add to start
             current = current.parent;
         }
         return path;
