@@ -88,12 +88,11 @@ public class MenuPanel extends JPanel implements ActionListener {
 		b1.addActionListener(this);
 		add(b1, BorderLayout.LINE_END);
 
-		JTextArea tmp = new JTextArea("Welcome To CLUEDO",2,2);
-		Border border = BorderFactory.createLineBorder(Color.BLACK);
-		tmp.setBorder(BorderFactory.createCompoundBorder(border,
-		            BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-	    JScrollPane scrollPane = new JScrollPane(tmp);
-		add(tmp, BorderLayout.LINE_END);
+		JTextArea textAreaAnnounce = new JTextArea("Welcome To CLUEDO",2,2);
+
+	    JScrollPane scrollPane = new JScrollPane(textAreaAnnounce);
+	    textAreaAnnounce.setEditable(false);
+		add(textAreaAnnounce, BorderLayout.LINE_END);
 
 	}
 
