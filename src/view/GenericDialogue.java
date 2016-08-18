@@ -21,7 +21,7 @@ public class GenericDialogue extends JDialog {
 
 	List<Card> characters;
 	ImageIcon questionMark = new ImageIcon("images/misc/Questionmark.png");
-
+	
 	public GenericDialogue(JFrame parent, List<Card> cards, Cluedo cluedo) {
 
     	super(parent, "Selecting Characters ...", false);

@@ -1,23 +1,29 @@
 package view;
 
-import cards.CharacterCard;
-import cluedo.Cluedo;
-import cluedo.Game;
-import util.Accusation;
-import util.CluedoError;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.*;
+import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.border.Border;
 
 import cards.Card;
 import cards.CharacterCard;
 import cards.RoomCard;
 import cards.WeaponCard;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.*;
-import java.util.List;
+import cluedo.Cluedo;
+import cluedo.Game;
+import util.CluedoError;
 
 /**
  * Created by Adam on 14/08/16.
@@ -37,6 +43,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 		initButtons();
 		setBackground(new Color(255, 255, 255));
 		setPreferredSize(new Dimension(BoardFrame.BOARD_WIDTH - 500, BoardFrame.BOARD_HEIGHT));
+
 	}
 
 	public void initButtons() {
@@ -80,6 +87,14 @@ public class MenuPanel extends JPanel implements ActionListener {
 		b1.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 		b1.addActionListener(this);
 		add(b1, BorderLayout.LINE_END);
+
+		JTextArea tmp = new JTextArea("Welcome To CLUEDO",2,2);
+		Border border = BorderFactory.createLineBorder(Color.BLACK);
+		tmp.setBorder(BorderFactory.createCompoundBorder(border,
+		            BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+	    JScrollPane scrollPane = new JScrollPane(tmp);
+		add(tmp, BorderLayout.LINE_END);
+
 	}
 
 	@Override

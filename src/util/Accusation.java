@@ -5,7 +5,6 @@ import cards.CharacterCard;
 import cards.RoomCard;
 import cards.WeaponCard;
 import cluedo.Cluedo;
-import sun.net.www.content.text.Generic;
 import view.AccusationDialog;
 import view.Board;
 import cluedo.Game;
