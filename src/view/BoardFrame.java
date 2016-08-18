@@ -49,6 +49,9 @@ public class BoardFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         canvas.requestFocus();
 
+
+
+
         CharacterDialouge dialog = new CharacterDialouge(this, cluedo);
     }
 
@@ -97,6 +100,7 @@ public class BoardFrame extends JFrame {
 
     public void repaint() {
         canvas.repaint();
+        
     }
 
     public static void main(String[] args) {
