@@ -57,7 +57,6 @@ public class PathFinder {
         if (current == null || !current.node.equals(current.target))
             throw new CluedoError("No Path Found");
 
-
         // Found a path lets follow the links backwards to build the path list
         List<Point> path = new ArrayList<>();
         while (current.parent != null) {

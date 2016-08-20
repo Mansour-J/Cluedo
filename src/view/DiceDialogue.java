@@ -35,6 +35,8 @@ public class DiceDialogue extends JDialog implements ActionListener {
         setVisible(true);
         setLayout(new GridLayout(0, 2));
 
+        this.cluedo = cluedo;
+
         dice1 = new JButton(new ImageIcon(pathToDice + 4 + ".png"));
         dice1.setSize(10, 10);
         dice2 = new JButton(new ImageIcon(pathToDice + 4 + ".png"));
