@@ -51,8 +51,9 @@ public class GenericDialogue extends JDialog {
 			ImageIcon imageIcon = new ImageIcon(path);
 			tmp = new JButton(imageIcon);
 			tmp.setSize(20,70);
-			add(tmp);
 			tmp.setBorder(BorderFactory.createEmptyBorder());
+			add(tmp);
+
 		}
 	}
 }

@@ -21,7 +21,10 @@ package view;
 import cluedo.Cluedo;
 import cluedo.Game;
 import cluedo.Player;
+import util.CluedoError;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.*;
 import java.util.*;
 import java.util.*;
@@ -43,19 +46,55 @@ import javax.swing.*;
  */
 public class BoardCanvas extends Canvas {
     private static final String IMAGE_PATH = "images/";
+    private static final String CHARACTER_IMAGE_PATH = "images/character_tokens/";
+
 
     private static final String[] preferredFonts = {"Courier New", "Arial", "Times New Roman"};
     private Font font;
     private Cluedo cluedo;
-
     private Image boardImage;
 
     public BoardCanvas(Cluedo cluedo) {
         this.cluedo = cluedo;
         this.boardImage = loadImage("boardImage.png");
         setVisible(true);
+
+        addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int x = e.getX() * 20;
+                int y = e.getY() * 20;
+                try {
+                    repaint();
+                    cluedo.movePlayer(x, y);
+                    repaint();
+                }catch (CluedoError error){
+                    error.printStackTrace();
+                    // TODO
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
     }
 
+    public void repaint() {
+        paint(getGraphics());
+    }
 
     @Override
     public void paint(Graphics g) {
@@ -64,11 +103,15 @@ public class BoardCanvas extends Canvas {
     }
 
     private void drawCharacterTokens(Graphics g) {
-//        for(Player player : cluedo.getGame().getPlayers()){
-//            int x = player.x();
-//            int y = player.y();
-//           // g.drawImage()
-//        }
+        if (cluedo.getGame() == null || cluedo.getGame().getPlayers() == null)
+            return;
+
+        for (Player player : cluedo.getGame().getPlayers()) {
+            int x = player.x();
+            int y = player.y();
+            Image img = loadImage(CHARACTER_IMAGE_PATH + player.getCharacter().toString() + ".png");
+            g.drawImage(img, x * 20, y * 20, 20, 20, null);
+        }
     }
 
     /**
@@ -89,8 +132,7 @@ public class BoardCanvas extends Canvas {
         return img;
     }
 
-    public void move(){
-
+    public void move() {
     }
 
     /**
@@ -101,10 +143,14 @@ public class BoardCanvas extends Canvas {
      */
     public static Image loadImage(String filename) {
         try {
-            return ImageIO.read(new File(IMAGE_PATH + filename));
+            if (filename.contains("boardImage"))
+                return ImageIO.read(new File(IMAGE_PATH + filename));
+
+            return ImageIO.read(new File(CHARACTER_IMAGE_PATH + "MISS_SCARLETTE.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
+
 }

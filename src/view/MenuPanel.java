@@ -125,37 +125,19 @@ public class MenuPanel extends JPanel implements ActionListener {
 				break;
 
 			case "Suggest":
-				//System.out.println(cluedo.getCurrentPlayer().printCards());
 
 				//Weapons
 				new AccusationDialog(jFrame, weaponCards, cluedo);
-
 				//characters
 				new AccusationDialog(jFrame, characterCards, cluedo);
-
-				// TODO --> We need to pass only the room that player is in in order to show only one room card
-				//Rooms
-				new AccusationDialog(jFrame, roomCards, cluedo);
-
 				break;
-				// case "Suggest": Accusation.suggest(cluedo.getCurrentPlayer(), cluedo,
-				// jFrame); break;
 
 			case "Accuse":
-				//Accusation.accuse(cluedo.getCurrentPlayer(), cluedo, jFrame);
-
 
 				//Weapons
 				new AccusationDialog(jFrame, weaponCards, cluedo);
-
 				//characters
 				new AccusationDialog(jFrame, characterCards, cluedo);
-
-				//Rooms
-				new AccusationDialog(jFrame, roomCards, cluedo);
-
-
-
 				break;
 
 			case "End_Turn":

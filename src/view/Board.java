@@ -94,35 +94,29 @@ public class Board {
         return null;
     }
 
-    public Square getTile(Square square, Direction dir) {
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                if (board[x][y] == square) {
-                    int x2 = 0;
-                    int y2 = 0;
-                    switch (dir) {
-                        case UP:
-                            y2 = y-1;
-                            break;
-                        case DOWN:
-                            y2 = y+1;
-                            break;
-                        case LEFT:
-                            x2 = x-1;
-                            break;
-                        case RIGHT:
-                            x2 = x+1;
-                            break;
-                    }
-                    if(x2 >= 0 && x2 < width && y2 >= 0 && y2 < height) {
-                        System.out.printf("Width %d, Height: %d", width, height);
-                        System.out.printf("X %d, Y: %d \n", x2, y2);
-                        return board[x2][y2];
-                    }
-                }
-            }
+    public Point getTile(Point sq, Direction dir) {
+        int x = sq.getX();
+        int y = sq.getY();
+        switch (dir) {
+            case UP:
+                y -= 1;
+                break;
+            case DOWN:
+                y += 1;
+                break;
+            case LEFT:
+                x -= 1;
+                break;
+            case RIGHT:
+                x += 1;
+                break;
         }
-        return null; // No square found
+        if (x >= 0 && x < width && y >= 0 && y < height) {
+            System.out.printf("Getting tile: x %d, y: %d \n", x, y);
+            return new Point(x, y);
+        }
+
+        return null; // Square out of bounds
     }
 
         /* Board parser methods */
@@ -252,38 +246,10 @@ public class Board {
         }
     }
 
-    public int cost(Square src, Square dest) {
-        int srcX = -1;
-        int srcY = -1;
-        int destX = -1;
-        int destY = -1;
-        List<Square> squares = new ArrayList<>();
-        for(Square[] row :  board){
-            squares.addAll(Arrays.asList(row));
-        }
-
-        if(!squares.contains(src) || !squares.contains(dest))
-            throw new CluedoError("Square not found");
-
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                if (board[x][y] == src) {
-                    srcX = x;
-                    srcY = y;
-                } if (board[x][y] == dest) {
-                    destX = x;
-                    destY = y;
-                }
-            }
-        }
-
-
-        if (srcX == -1 || srcY == -1)
-            throw new CluedoError("Source square wasn't found");
-        if (destX == -1 || destY == -1)
-            throw new CluedoError("Destination square wasn't found");
-
-        return Math.abs(srcX - destX) + Math.abs(srcY - destY);
+    public int cost(Point src, Point dest) {
+        if(src == null || dest == null)
+            throw new CluedoError("Shouldn't have a null point");
+         return Math.abs(src.getX() - dest.getX()) + Math.abs(src.getY() - dest.getY());
     }
 
     /* Getters and Setters */

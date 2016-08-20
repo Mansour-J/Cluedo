@@ -5,13 +5,11 @@ import cards.CharacterCard;
 import cards.RoomCard;
 import cards.WeaponCard;
 import squares.Square;
-import util.Accusation;
-import util.CluedoError;
-import util.IO;
-import util.PathFinder;
+import util.*;
 import view.Board;
 import view.BoardFrame;
 
+import javax.swing.*;
 import java.awt.event.KeyListener;
 import java.util.*;
 import java.util.List;
@@ -26,6 +24,7 @@ public class Cluedo {
     private List<Player> players;
     private Board board;
     private Player currentPlayer;
+    private int diceRoll;
 
     /**
      * Construct a new game of Cluedo
@@ -79,25 +78,32 @@ public class Cluedo {
         this.currentGame = new Game(players, solution, weapons, rooms, characters);
         this.board = currentGame.getBoard();
         this.currentPlayer = players.get(0);
-
-        Square start = board.getBoard()[7][1];
-        Square end = board.getBoard()[7][9];
-        System.out.println(start.toString() + " " + end.toString());
-        List<Square> path = PathFinder.findPath(board, start, end);
-        System.out.println(path.toString());
-
     }
 
-    /**
-     * Called when its the players turn to move, performs dice roll and physical movement of the player
-     *
-     * @param p
-     */
-    public void movePlayer(Player p) {
-        int diceRoll = (int) (Math.random() * 6 + 1) + (int) (Math.random() * 6 + 1); // Assuming 2 x 6 sided die
-        System.out.println("You rolled: " + diceRoll);
-        while (diceRoll > 0) {
-            diceRoll = movePlayerHelper(diceRoll, p);
+    public void updateDiceRoll(int diceRoll) {
+        this.diceRoll = diceRoll;
+    }
+
+    public void movePlayer(int x, int y) throws CluedoError {
+        if (currentPlayer == null)
+            throw new CluedoError("No player to move");
+
+        // Set start and end points
+        Point start = new Point(currentPlayer.x(), currentPlayer.y());
+        Point end = new Point(x, y);
+
+        // Find path
+        System.out.println("Finding: " + start.toString() + " " + end.toString());
+        List<Point> path = PathFinder.findPath(board, start, end);
+        System.out.println(path.toString());
+
+        // Check path length is valid
+        if (path.size() > diceRoll)
+            throw new CluedoError("You cannot move that many steps");
+
+        // Update the players path
+        for (Point p : path) {
+            currentPlayer.setPos(p.getX(), p.getY());
         }
     }
 
@@ -108,6 +114,7 @@ public class Cluedo {
      * @param p
      * @return
      */
+
     public int movePlayerHelper(int diceRoll, Player p) {
         while (true) {
             System.out.println("You are at position " + p.getPos() + " and you have " + diceRoll + " steps to move");
@@ -187,6 +194,10 @@ public class Cluedo {
 
     public Player getCurrentPlayer() {
         return this.currentPlayer;
+    }
+
+    public List<Player> getPlayers() {
+        return this.players;
     }
 
     public Game getGame() {
