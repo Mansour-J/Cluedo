@@ -39,7 +39,7 @@ public class CharacterDialouge extends JDialog implements ActionListener {
 		// Create the radio buttons.
 
 
-
+		this.setAlwaysOnTop(true);
 		this.owner = frame;
 		this.cluedo = cluedo;
 
