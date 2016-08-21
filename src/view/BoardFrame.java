@@ -53,6 +53,8 @@ public class BoardFrame extends JFrame {
         canvas.requestFocus();
 
         CharacterDialouge dialog = new CharacterDialouge(this, cluedo);
+        dialog.setVisible(true);
+        dialog.toFront();
     }
 
     public void setMenuBar() {

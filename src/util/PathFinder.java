@@ -83,7 +83,7 @@ public class PathFinder {
             this.dist = dist;
             this.target = target;
             if (node == null || target == null)
-                throw new CluedoError("Shouldnt be null");
+                throw new CluedoError("Shouldn't be null");
             this.cost = board.cost(node, target);
         }
 
