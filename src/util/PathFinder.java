@@ -61,7 +61,7 @@ public class PathFinder {
         List<Point> path = new ArrayList<>();
         while (current.parent != null) {
             System.out.println(current.node);
-            Point p = new Point( current.node.getX() , current.node.getX());
+            Point p = new Point( current.node.getX() , current.node.getY());
             path.add(0, p); // Add to start
             current = current.parent;
         }
@@ -83,7 +83,7 @@ public class PathFinder {
             this.dist = dist;
             this.target = target;
             if (node == null || target == null)
-                throw new CluedoError("Shouldnt be null");
+                throw new CluedoError("Shouldn't be null");
             this.cost = board.cost(node, target);
         }
 

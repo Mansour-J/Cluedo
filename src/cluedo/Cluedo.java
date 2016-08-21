@@ -23,7 +23,9 @@ public class Cluedo {
     private List<Player> players;
     private Board board;
     private Player currentPlayer;
+
     private int diceRoll;
+    public boolean readyToMovePlayer = false;
 
     /**
      * Construct a new game of Cluedo

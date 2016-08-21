@@ -120,4 +120,5 @@ public class CharacterDialouge extends JDialog implements ActionListener {
 
 	}
 
+
 }

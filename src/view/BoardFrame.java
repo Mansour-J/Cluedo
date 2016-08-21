@@ -58,8 +58,10 @@ public class BoardFrame extends JFrame {
 		JMenuBar menuBar;
 		JMenu menu;
 
+
 		// Create the menu bar.
 		menuBar = new JMenuBar();
+
 
 		/* Init the file menu. */
 		menu = new JMenu("File");

@@ -7,8 +7,8 @@ S:Study;
 B:Ball_Room;
 I:Billiard_Room;
 D:Dining_Room;
-24;26;
-#########?####?##########
+25;26;
+#########?#####?#########
 KKKKK1#___BBBBB___#CCCCCC
 KKKKKK__BBBBBBBBB__CCCCCC
 KKKKKK__BBBBBBBBB__CCCCCC

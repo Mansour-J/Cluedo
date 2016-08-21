@@ -1,17 +1,11 @@
 package view;
 
-import cards.Card;
-import cards.CharacterCard;
-import cards.RoomCard;
-import cards.WeaponCard;
 import cluedo.Cluedo;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 /**
  * Created by javahemans on 14/08/16.
@@ -66,7 +60,6 @@ public class DiceDialogue extends JDialog implements ActionListener {
         timer.start();
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
         // Stop timer and show dice for 100 millisec
@@ -98,5 +91,6 @@ public class DiceDialogue extends JDialog implements ActionListener {
         textField.setBorder(BorderFactory.createEmptyBorder());
         add(textField);
         cluedo.updateDiceRoll(total);
+        cluedo.readyToMovePlayer = true;
     }
 }

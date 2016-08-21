@@ -68,13 +68,16 @@ public class BoardCanvas extends Canvas {
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(!cluedo.readyToMovePlayer)
+                    return;
+
                 int x = e.getX() / 20;
                 int y = e.getY() / 20;
                 xClick = x;
                 yClick = y;
                 try {
-                    repaint();
                     cluedo.movePlayer(x, y);
+                    cluedo.readyToMovePlayer = false;
                     repaint();
                 }catch (CluedoError error){
                     error.printStackTrace();
