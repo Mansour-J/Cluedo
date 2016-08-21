@@ -106,58 +106,14 @@ public class Cluedo {
         if (path.size() > diceRoll)
             throw new CluedoError("You cannot move that many steps");
 
+        // Update dice roll
+        this.diceRoll -= path.size();
+        if(this.diceRoll == 0)
+            readyToMovePlayer = false;
+
         // Update the players path
         for (Point p : path) {
             currentPlayer.setPos(p.getX(), p.getY());
-        }
-    }
-
-    /**
-     * Assists movePlayer() by asking and executing one movement e.g. 'Left 4' or 'Down 2'
-     *
-     * @param diceRoll
-     * @param p
-     * @return
-     */
-
-    public int movePlayerHelper(int diceRoll, Player p) {
-        while (true) {
-            System.out.println("You are at position " + p.getPos() + " and you have " + diceRoll + " steps to move");
-            System.out.println("What direction would you like to move in and how many steps? E.g. Left 4");
-            Scanner s = new Scanner(System.in);
-
-            // Get direction
-            Board.Direction directionEnum = null;
-            int steps = -1;
-            try {
-                String dir = s.next().trim().toUpperCase();
-                directionEnum = Board.Direction.valueOf(dir);
-                steps = s.nextInt();
-
-            } catch (IllegalArgumentException | NullPointerException e) {
-                System.out.println("Invalid input");
-                continue;
-            }
-
-            if (steps < 0) // check valid steps were entered
-                continue;
-
-            if (steps > diceRoll) {
-                System.out.println("You can only move " + diceRoll + " steps.");
-                continue;
-            }
-
-            try {
-                currentGame.movePlayer(p, directionEnum, steps);
-                Square square = board.getBoard()[p.x()][p.y()];
-                System.out.println("\n");
-                System.out.println(board.toString());
-                System.out.println("You are now on a " + square.getClass().getName() + " square");
-            } catch (CluedoError e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
-            return diceRoll - steps;
         }
     }
 

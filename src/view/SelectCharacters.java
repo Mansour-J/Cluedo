@@ -111,7 +111,7 @@ public class SelectCharacters extends JDialog implements ActionListener {
 		default:
 			numPlayer++;
 			// custom title, error icon
-			JOptionPane.showMessageDialog(this, "This character had been choosen", "Invalid Selection",
+			JOptionPane.showMessageDialog(this, "This character had been chosen", "Invalid Selection",
 					JOptionPane.ERROR_MESSAGE);
 		}
 		if (numPlayer == 0) {

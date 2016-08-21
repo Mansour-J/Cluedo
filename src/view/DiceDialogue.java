@@ -62,7 +62,7 @@ public class DiceDialogue extends JDialog implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Stop timer and show dice for 100 millisec
+        // Stop timer and show dice for 100 milli-sec
         timer.stop();
         try {
             Thread.sleep(500);

@@ -81,6 +81,8 @@ public class BoardCanvas extends Canvas {
                     repaint();
                 }catch (CluedoError error){
                     error.printStackTrace();
+                    JOptionPane.showMessageDialog(BoardCanvas.this, error.getMessage(),
+                            JOptionPane.WARNING_MESSAGE);
                     // TODO
                 }
             }
