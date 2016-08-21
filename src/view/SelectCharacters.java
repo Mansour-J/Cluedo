@@ -24,12 +24,12 @@ public class SelectCharacters extends JDialog implements ActionListener {
 
 	int numPlayer;
 	Cluedo cluedo;
-	JFrame parent;
+	BoardFrame parent;
 
 	ArrayList<CharacterCard.Character> characters;
 	ImageIcon questionMark = new ImageIcon("images/misc/Questionmark.png");
 
-	public SelectCharacters(JFrame parent, int numPlayer, Cluedo cluedo) {
+	public SelectCharacters(BoardFrame parent, int numPlayer, Cluedo cluedo) {
 		super(parent, "Selecting Characters ...", false);
 		characters = new ArrayList<>();
 		this.numPlayer = numPlayer;
@@ -117,7 +117,8 @@ public class SelectCharacters extends JDialog implements ActionListener {
 		if (numPlayer == 0) {
 			dispose();
 			this.cluedo.setupGame(characters);
-
+			parent.repaint();
+			parent.setCurrentPlayerText();
 		}
 	}
 }

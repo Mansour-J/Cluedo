@@ -10,10 +10,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class CharacterDialouge extends JDialog{
+	private BoardFrame frame;
 
-	public CharacterDialouge(JFrame frame, Cluedo cluedo) {
-
-
+	public CharacterDialouge(BoardFrame frame, Cluedo cluedo) {
+		this.frame = frame;
 		Object[] possibilities = { "3", "4", "5", "6" };
 
 		String numPlayer = (String) JOptionPane.showInputDialog(frame, "How many players you want to play with", "Players",1,null,possibilities,"3");
@@ -22,10 +22,5 @@ public class CharacterDialouge extends JDialog{
 
 		SelectCharacters mansour = new SelectCharacters(frame, numPlayers, cluedo);
 		mansour.setVisible(true);
-
-
 	}
-
-
-
 }

@@ -78,6 +78,7 @@ public class Cluedo {
         this.currentGame = new Game(players, solution, weapons, rooms, characters);
         this.board = currentGame.getBoard();
         this.currentPlayer = players.get(0);
+
     }
 
     public void updateDiceRoll(int diceRoll) {
@@ -85,6 +86,9 @@ public class Cluedo {
     }
 
     public void movePlayer(int x, int y) throws CluedoError {
+        if(diceRoll == 0)
+            return;
+
         if (currentPlayer == null)
             throw new CluedoError("No player to move");
 
