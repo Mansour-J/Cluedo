@@ -29,12 +29,12 @@ public class SelectCharacters extends JDialog implements ActionListener {
 	ArrayList<CharacterCard.Character> characters;
 	ImageIcon questionMark = new ImageIcon("images/misc/Questionmark.png");
 
-	public SelectCharacters(BoardFrame parent, int numPlayer, Cluedo cluedo) {
-		super(parent, "Selecting Characters ...", false);
+	public SelectCharacters(BoardFrame owner, int numPlayer, Cluedo cluedo) {
+		super(owner, "Selecting Characters ...", false);
 		characters = new ArrayList<>();
 		this.numPlayer = numPlayer;
 		this.cluedo = cluedo;
-		this.parent = parent;
+		this.parent = owner;
 
 		setSize(800, 800);
 

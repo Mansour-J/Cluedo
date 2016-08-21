@@ -53,6 +53,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 		// Move Button
 		JButton b1 = new JButton("Move");
 		b1.setActionCommand("Move");
+		b1.setToolTipText("moves strat with rolling dice and requires you to click on the board");
 		b1.setVerticalTextPosition(AbstractButton.CENTER);
 		b1.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 		b1.addActionListener(this);
@@ -61,6 +62,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 		// Show Hand
 		b1 = new JButton("Show Hand");
 		b1.setActionCommand("Show_Hand");
+		b1.setToolTipText("you can see what cards do you have");
 		b1.setVerticalTextPosition(AbstractButton.CENTER);
 		b1.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 		b1.addActionListener(this);
@@ -69,6 +71,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 		// Suggest
 		b1 = new JButton("Suggest");
 		b1.setActionCommand("Suggest");
+		b1.setToolTipText("Make a suggestion -- System will use your room as room card");
 		b1.setVerticalTextPosition(AbstractButton.CENTER);
 		b1.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 		b1.addActionListener(this);
@@ -77,6 +80,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 		// Accuse
 		b1 = new JButton("Accuse");
 		b1.setActionCommand("Accuse");
+		b1.setToolTipText("Correct Accusation makes you winner, wrong accusation Eliminate you from game");
 		b1.setVerticalTextPosition(AbstractButton.CENTER);
 		b1.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 		b1.addActionListener(this);
@@ -85,6 +89,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 		// End turn
 		b1 = new JButton("End Turn");
 		b1.setActionCommand("End_Turn");
+		b1.setToolTipText("By clicking on End_Turn next players gets to play");
 		b1.setVerticalTextPosition(AbstractButton.CENTER);
 		b1.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 		b1.addActionListener(this);
