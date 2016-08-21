@@ -100,7 +100,7 @@ public class BoardFrame extends JFrame {
 
     public void repaint() {
         canvas.repaint();
-        
+
     }
 
     public static void main(String[] args) {
