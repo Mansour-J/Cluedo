@@ -72,7 +72,6 @@ public class BoardCanvas extends Canvas {
                 xClick = x;
                 yClick = y;
                 try {
-                    repaint();
                     cluedo.movePlayer(x, y);
                     repaint();
                 }catch (CluedoError error){

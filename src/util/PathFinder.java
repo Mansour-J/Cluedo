@@ -61,7 +61,7 @@ public class PathFinder {
         List<Point> path = new ArrayList<>();
         while (current.parent != null) {
             System.out.println(current.node);
-            Point p = new Point( current.node.getX() , current.node.getX());
+            Point p = new Point( current.node.getX() , current.node.getY());
             path.add(0, p); // Add to start
             current = current.parent;
         }
