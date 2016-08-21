@@ -23,6 +23,7 @@ import cards.RoomCard;
 import cards.WeaponCard;
 import cluedo.Cluedo;
 import cluedo.Game;
+import cluedo.Player;
 import util.CluedoError;
 
 /**
@@ -35,6 +36,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 	private Cluedo cluedo;
 	private Game game;
 	private JFrame jFrame;
+	private JTextArea textAreaAnnounce;
 
 	public MenuPanel(JFrame jFrame, Cluedo cluedo) {
 		this.cluedo = cluedo;
@@ -88,7 +90,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 		b1.addActionListener(this);
 		add(b1, BorderLayout.LINE_END);
 
-		JTextArea textAreaAnnounce = new JTextArea("Welcome To CLUEDO",2,2);
+		textAreaAnnounce = new JTextArea("Welcome To CLUEDO",2,2);
 
 	    JScrollPane scrollPane = new JScrollPane(textAreaAnnounce);
 	    textAreaAnnounce.setEditable(false);
@@ -142,9 +144,17 @@ public class MenuPanel extends JPanel implements ActionListener {
 
 			case "End_Turn":
 				cluedo.nextPlayer();
+				Player player  = cluedo.getCurrentPlayer();
+				String t = "Its now: \n" + player.getCharacter().toString() + "'s turn. \n" + "You are at position: " +
+						player.x() + ", " + player.y();
+				textAreaAnnounce.setText(t);
 				break;
 			default:
 				throw new CluedoError("Unrecognised button action command");
 		}
+	}
+
+	public JTextArea getTextArea(){
+		return this.textAreaAnnounce;
 	}
 }

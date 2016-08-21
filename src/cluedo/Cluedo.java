@@ -1,5 +1,10 @@
 package cluedo;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
 import cards.Card;
 import cards.CharacterCard;
 import cards.RoomCard;
@@ -7,12 +12,6 @@ import cards.WeaponCard;
 import squares.Square;
 import util.*;
 import view.Board;
-import view.BoardFrame;
-
-import javax.swing.*;
-import java.awt.event.KeyListener;
-import java.util.*;
-import java.util.List;
 
 /**
  * Created by Adam on 25/07/16.
@@ -78,6 +77,7 @@ public class Cluedo {
         this.currentGame = new Game(players, solution, weapons, rooms, characters);
         this.board = currentGame.getBoard();
         this.currentPlayer = players.get(0);
+
     }
 
     public void updateDiceRoll(int diceRoll) {
@@ -85,6 +85,9 @@ public class Cluedo {
     }
 
     public void movePlayer(int x, int y) throws CluedoError {
+        if(diceRoll == 0)
+            return;
+
         if (currentPlayer == null)
             throw new CluedoError("No player to move");
 

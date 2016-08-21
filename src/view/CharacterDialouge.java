@@ -15,7 +15,7 @@ import cluedo.Cluedo;
 
 public class CharacterDialouge extends JDialog implements ActionListener {
 
-	JFrame owner;
+	BoardFrame owner;
 	Cluedo cluedo;
 	JButton play;
 	JRadioButton three;
@@ -26,7 +26,7 @@ public class CharacterDialouge extends JDialog implements ActionListener {
 	ButtonGroup group;
 	int numPlayer = 3;
 
-	public CharacterDialouge(JFrame frame, Cluedo cluedo) {
+	public CharacterDialouge(BoardFrame frame, Cluedo cluedo) {
 
 		/*
 		 * Object[] possibilities = { "3", "4", "5", "6" };
@@ -49,6 +49,7 @@ public class CharacterDialouge extends JDialog implements ActionListener {
 		three = new JRadioButton("3");
 		three.setActionCommand("3");
 		three.setSelected(true);
+
 
 		four = new JRadioButton("4");
 		four.setActionCommand("4");

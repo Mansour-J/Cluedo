@@ -54,17 +54,24 @@ public class BoardCanvas extends Canvas {
     private Cluedo cluedo;
     private Image boardImage;
 
+    int xClick;
+    int yClick;
+
     public BoardCanvas(Cluedo cluedo) {
         this.cluedo = cluedo;
        /* this.boardImage = loadImage("boardImageMain.jpg");*/
         this.boardImage = loadImage("boardImage.png");
         setVisible(true);
+        repaint();
+
 
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                int x = e.getX() * 20;
-                int y = e.getY() * 20;
+                int x = e.getX() / 20;
+                int y = e.getY() / 20;
+                xClick = x;
+                yClick = y;
                 try {
                     repaint();
                     cluedo.movePlayer(x, y);
@@ -99,6 +106,10 @@ public class BoardCanvas extends Canvas {
 
     @Override
     public void paint(Graphics g) {
+        if(g == null)
+            return;
+
+        g.fillRect(xClick, yClick, 20, 20);
         g.drawImage(boardImage, 0, 0, null);
         drawCharacterTokens(g);
     }
@@ -110,7 +121,7 @@ public class BoardCanvas extends Canvas {
         for (Player player : cluedo.getGame().getPlayers()) {
             int x = player.x();
             int y = player.y();
-            Image img = loadImage(CHARACTER_IMAGE_PATH + player.getCharacter().toString() + ".png");
+            Image img = loadImage(player.getCharacter().toString() + ".png");
             g.drawImage(img, x * 20, y * 20, 20, 20, null);
         }
     }
@@ -133,8 +144,6 @@ public class BoardCanvas extends Canvas {
         return img;
     }
 
-    public void move() {
-    }
 
     /**
      * Load an image from the file system, using a given filename.
@@ -147,7 +156,7 @@ public class BoardCanvas extends Canvas {
             if (filename.contains("boardImage"))
                 return ImageIO.read(new File(IMAGE_PATH + filename));
 
-            return ImageIO.read(new File(CHARACTER_IMAGE_PATH + "MISS_SCARLETTE.png"));
+            return ImageIO.read(new File(CHARACTER_IMAGE_PATH + filename));
         } catch (IOException e) {
             e.printStackTrace();
         }

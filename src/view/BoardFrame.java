@@ -1,6 +1,7 @@
 package view;
 
 import cluedo.Cluedo;
+import cluedo.Player;
 
 import javax.swing.*;
 
@@ -21,7 +22,7 @@ public class BoardFrame extends JFrame {
     private final Cluedo cluedo;
     private final Toolkit toolkit;
 
-    private JPanel menuPanel;
+    private MenuPanel menuPanel;
 
     public BoardFrame(String title, Cluedo cluedo, KeyListener[] keys) {
         super(title);
@@ -48,9 +49,6 @@ public class BoardFrame extends JFrame {
         add(canvas, BorderLayout.CENTER);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         canvas.requestFocus();
-
-
-
 
         CharacterDialouge dialog = new CharacterDialouge(this, cluedo);
     }
@@ -103,12 +101,28 @@ public class BoardFrame extends JFrame {
 
     }
 
+    public void setCurrentPlayerText(){
+        Player p = cluedo.getCurrentPlayer();
+        String t = "Its now: \n" + p.getCharacter().toString() + "'s turn. \n" + "You are at position: " +
+                p.x() + ", " + p.y();
+        menuPanel.getTextArea().setText(t);
+    }
+
+    public MenuPanel getMenuPannel(){
+        return this.menuPanel;
+    }
+
+    public BoardCanvas getCanvas() {
+        return canvas;
+    }
+
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             Cluedo cluedo = new Cluedo();
             BoardFrame ex = new BoardFrame("Adam", cluedo, new KeyListener[0]);
             ex.setVisible(true);
-
         });
     }
+
+
 }
