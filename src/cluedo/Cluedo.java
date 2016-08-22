@@ -3,13 +3,11 @@ package cluedo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 import cards.Card;
 import cards.CharacterCard;
 import cards.RoomCard;
 import cards.WeaponCard;
-import squares.Square;
 import util.*;
 import view.Board;
 
@@ -25,7 +23,8 @@ public class Cluedo {
     private Player currentPlayer;
 
     private int diceRoll;
-    public boolean readyToMovePlayer = false;
+    public boolean canPlayerMove = false;
+    public boolean hasPlayerRolledDice = false;
 
     /**
      * Construct a new game of Cluedo
@@ -98,66 +97,20 @@ public class Cluedo {
         Point end = new Point(x, y);
 
         // Find path
-        System.out.println("Finding: " + start.toString() + " " + end.toString());
         List<Point> path = PathFinder.findPath(board, start, end);
-        System.out.println(path.toString());
 
         // Check path length is valid
         if (path.size() > diceRoll)
             throw new CluedoError("You cannot move that many steps");
 
+        // Update dice roll
+        this.diceRoll -= path.size();
+        if(this.diceRoll == 0)
+            canPlayerMove = false;
+
         // Update the players path
         for (Point p : path) {
             currentPlayer.setPos(p.getX(), p.getY());
-        }
-    }
-
-    /**
-     * Assists movePlayer() by asking and executing one movement e.g. 'Left 4' or 'Down 2'
-     *
-     * @param diceRoll
-     * @param p
-     * @return
-     */
-
-    public int movePlayerHelper(int diceRoll, Player p) {
-        while (true) {
-            System.out.println("You are at position " + p.getPos() + " and you have " + diceRoll + " steps to move");
-            System.out.println("What direction would you like to move in and how many steps? E.g. Left 4");
-            Scanner s = new Scanner(System.in);
-
-            // Get direction
-            Board.Direction directionEnum = null;
-            int steps = -1;
-            try {
-                String dir = s.next().trim().toUpperCase();
-                directionEnum = Board.Direction.valueOf(dir);
-                steps = s.nextInt();
-
-            } catch (IllegalArgumentException | NullPointerException e) {
-                System.out.println("Invalid input");
-                continue;
-            }
-
-            if (steps < 0) // check valid steps were entered
-                continue;
-
-            if (steps > diceRoll) {
-                System.out.println("You can only move " + diceRoll + " steps.");
-                continue;
-            }
-
-            try {
-                currentGame.movePlayer(p, directionEnum, steps);
-                Square square = board.getBoard()[p.x()][p.y()];
-                System.out.println("\n");
-                System.out.println(board.toString());
-                System.out.println("You are now on a " + square.getClass().getName() + " square");
-            } catch (CluedoError e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
-            return diceRoll - steps;
         }
     }
 
@@ -175,6 +128,7 @@ public class Cluedo {
      * Advance the currentPlayer to be the next player. This is the player after the the currentPlayer in players
      */
     public void nextPlayer() {
+        hasPlayerRolledDice = false;
         if (currentPlayer == null) {
             currentPlayer = players.get(0);
         } else {
@@ -209,4 +163,7 @@ public class Cluedo {
         return this.currentGame;
     }
 
+    public int getDiceRoll() {
+        return diceRoll;
+    }
 }

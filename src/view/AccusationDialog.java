@@ -64,7 +64,6 @@ public class AccusationDialog extends JDialog implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Accusation.selectedCards.add(this.cards.get(Integer.valueOf(e.getActionCommand())));
-		System.err.println(this.cards.get(Integer.valueOf(e.getActionCommand())));
 		dispose();
 	}
 

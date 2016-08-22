@@ -1,11 +1,19 @@
 package view;
 
-import cluedo.Cluedo;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.Timer;
+
+import cluedo.Cluedo;
 
 /**
  * Created by javahemans on 14/08/16.
@@ -62,7 +70,7 @@ public class DiceDialogue extends JDialog implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Stop timer and show dice for 100 millisec
+        // Stop timer and show dice for 100 milli-sec
         timer.stop();
         try {
             Thread.sleep(500);
@@ -91,10 +99,15 @@ public class DiceDialogue extends JDialog implements ActionListener {
         textField.setBorder(BorderFactory.createEmptyBorder());
         add(textField);
         cluedo.updateDiceRoll(total);
-        cluedo.readyToMovePlayer = true;
+
+
+        cluedo.canPlayerMove = true;
+        cluedo.hasPlayerRolledDice = true;
 
 
         dispose();
+
+
 
 
 

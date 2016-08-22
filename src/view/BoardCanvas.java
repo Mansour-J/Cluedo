@@ -19,18 +19,14 @@
 package view;
 
 import cluedo.Cluedo;
-import cluedo.Game;
 import cluedo.Player;
 import util.CluedoError;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.*;
-import java.util.*;
-import java.util.*;
 import java.awt.*;
 import java.awt.image.*;
-import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -53,23 +49,31 @@ public class BoardCanvas extends Canvas {
     private Font font;
     private Cluedo cluedo;
     private Image boardImage;
+    private BoardFrame parent;
 
     int xClick;
     int yClick;
 
-    public BoardCanvas(Cluedo cluedo) {
+    public BoardCanvas(Cluedo cluedo, BoardFrame parent) {
         this.cluedo = cluedo;
-       /* this.boardImage = loadImage("boardImageMain.jpg");*/
+        this.parent = parent;
         this.boardImage = loadImage("boardImage.png");
         setVisible(true);
         repaint();
-
-
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(!cluedo.readyToMovePlayer)
+                if(!cluedo.hasPlayerRolledDice) {
+                    JOptionPane.showMessageDialog(parent, "You must roll the dice before you can move", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                     return;
+                }
+
+                if(cluedo.getDiceRoll() == 0){
+                    JOptionPane.showMessageDialog(parent, "You have no steps left to move", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 
                 int x = e.getX() / 20;
                 int y = e.getY() / 20;
@@ -77,10 +81,11 @@ public class BoardCanvas extends Canvas {
                 yClick = y;
                 try {
                     cluedo.movePlayer(x, y);
-                    cluedo.readyToMovePlayer = false;
                     repaint();
                 }catch (CluedoError error){
                     error.printStackTrace();
+                    JOptionPane.showMessageDialog(parent, error.getMessage(), "Error",
+                            JOptionPane.ERROR_MESSAGE);
                     // TODO
                 }
             }

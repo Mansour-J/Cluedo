@@ -135,4 +135,8 @@ public class Game {
         return board;
     }
     public List<Player> getPlayers(){ return this.players;}
+
+    public List<Card> getSolution() {
+        return solution;
+    }
 }

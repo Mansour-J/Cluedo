@@ -55,12 +55,11 @@ public class PathFinder {
 
         // No path found, so throw an exception
         if (current == null || !current.node.equals(current.target))
-            throw new CluedoError("No Path Found");
+            throw new CluedoError("No path found, are you moving to a correct square?");
 
         // Found a path lets follow the links backwards to build the path list
         List<Point> path = new ArrayList<>();
         while (current.parent != null) {
-            System.out.println(current.node);
             Point p = new Point( current.node.getX() , current.node.getY());
             path.add(0, p); // Add to start
             current = current.parent;
