@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,8 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 
 import cluedo.Cluedo;
@@ -60,6 +61,9 @@ public class CharacterDialouge extends JDialog implements ActionListener {
 		six = new JRadioButton("6");
 		six.setActionCommand("6");
 
+		JLabel label = new JLabel("How many Players you want to play with?");
+		temp.add(label);
+
 		// Group the radio buttons.
 		group = new ButtonGroup();
 		group.add(three);
@@ -85,7 +89,10 @@ public class CharacterDialouge extends JDialog implements ActionListener {
 
 		play.setActionCommand("play");
 		play.addActionListener(this);
-		temp.add(play);
+		temp.add(play, BorderLayout.NORTH);
+		temp.setResizable(false);
+		temp.setSize(new Dimension(700, 700));
+		temp.setTitle("Select number of players");
 		/*
 		 *
 		 *

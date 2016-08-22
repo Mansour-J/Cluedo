@@ -92,5 +92,11 @@ public class DiceDialogue extends JDialog implements ActionListener {
         add(textField);
         cluedo.updateDiceRoll(total);
         cluedo.readyToMovePlayer = true;
+
+
+        dispose();
+
+
+
     }
 }

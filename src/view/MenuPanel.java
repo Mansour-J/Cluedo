@@ -37,6 +37,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 	private Game game;
 	private JFrame jFrame;
 	private JTextArea textAreaAnnounce;
+	DiceDialogue tmp;
 
 	public MenuPanel(JFrame jFrame, Cluedo cluedo) {
 		this.cluedo = cluedo;
@@ -80,8 +81,8 @@ public class MenuPanel extends JPanel implements ActionListener {
 		// Accuse
 		b1 = new JButton("Accuse");
 		b1.setActionCommand("Accuse");
-		b1.setToolTipText("Accuse a player, weapon, and room. Correct Accusation makes you winner, wrong accusation " +
-                "eliminates you from the game");
+		b1.setToolTipText("Accuse a player, weapon, and room. Correct Accusation makes you winner, wrong accusation "
+				+ "eliminates you from the game");
 		b1.setVerticalTextPosition(AbstractButton.CENTER);
 		b1.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 		b1.addActionListener(this);
@@ -96,71 +97,74 @@ public class MenuPanel extends JPanel implements ActionListener {
 		b1.addActionListener(this);
 		add(b1, BorderLayout.LINE_END);
 
-		textAreaAnnounce = new JTextArea("",2,2);
+		textAreaAnnounce = new JTextArea("", 2, 2);
 
-	    JScrollPane scrollPane = new JScrollPane(textAreaAnnounce);
-	    textAreaAnnounce.setEditable(false);
+		JScrollPane scrollPane = new JScrollPane(textAreaAnnounce);
+		textAreaAnnounce.setEditable(false);
 		add(textAreaAnnounce, BorderLayout.LINE_END);
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//WeaponCards -- WC
+		// WeaponCards -- WC
 		List<WeaponCard> wc = WeaponCard.generateObjects();
 		final List<Card> weaponCards = new ArrayList<>();
 		wc.forEach(c -> weaponCards.add(c));
 
-		//CharactersCards -- CC
+		// CharactersCards -- CC
 		List<CharacterCard> cc = CharacterCard.generateObjects();
 		final List<Card> characterCards = new ArrayList<>();
 		cc.forEach(c -> characterCards.add(c));
 
-		//RoomCards  -- RC
+		// RoomCards -- RC
 		List<RoomCard> rc = RoomCard.generateObjects();
 		final List<Card> roomCards = new ArrayList<>();
 		rc.forEach(c -> roomCards.add(c));
 
 		switch (e.getActionCommand()) {
-			case "Move":
-				new DiceDialogue(jFrame, cluedo);
-				break;
+		case "Move":
+			tmp =  new DiceDialogue(jFrame, cluedo);
 
-			case "Show_Hand":
-				System.out.println(cluedo.getCurrentPlayer().printCards());
-				List<cards.Card> cards = cluedo.getCurrentPlayer().getCards();
-				new GenericDialogue(jFrame, cards, cluedo);
-				break;
 
-			case "Suggest":
+			break;
 
-				//Weapons
-				new AccusationDialog(jFrame, weaponCards, cluedo);
-				//characters
-				new AccusationDialog(jFrame, characterCards, cluedo);
-				break;
+		case "Show_Hand":
+			System.out.println(cluedo.getCurrentPlayer().printCards());
+			List<cards.Card> cards = cluedo.getCurrentPlayer().getCards();
+			new GenericDialogue(jFrame, cards, cluedo);
+			break;
 
-			case "Accuse":
+		case "Suggest":
 
-				//Weapons
-				new AccusationDialog(jFrame, weaponCards, cluedo);
-				//characters
-				new AccusationDialog(jFrame, characterCards, cluedo);
-				break;
+			// Weapons
+			new AccusationDialog(jFrame, weaponCards, cluedo);
+			// characters
+			new AccusationDialog(jFrame, characterCards, cluedo);
+			break;
 
-			case "End_Turn":
-				cluedo.nextPlayer();
-				Player player  = cluedo.getCurrentPlayer();
-				String t = "Its now: \n" + player.getCharacter().toString() + "'s turn. \n" + "You are at position: " +
-						player.x() + ", " + player.y();
-				textAreaAnnounce.setText(t);
-				break;
-			default:
-				throw new CluedoError("Unrecognised button action command");
+		case "Accuse":
+
+			// Weapons
+			new AccusationDialog(jFrame, weaponCards, cluedo);
+			// characters
+			new AccusationDialog(jFrame, characterCards, cluedo);
+			break;
+
+		case "End_Turn":
+			cluedo.nextPlayer();
+			Player player = cluedo.getCurrentPlayer();
+			String t = "Its now: \n" + player.getCharacter().toString() + "'s turn. \n" + "You are at position: "
+					+ player.x() + ", " + player.y();
+			textAreaAnnounce.setText(t);
+			break;
+		default:
+			throw new CluedoError("Unrecognised button action command");
 		}
+
 	}
 
-	public JTextArea getTextArea(){
+	public JTextArea getTextArea() {
 		return this.textAreaAnnounce;
 	}
 }
