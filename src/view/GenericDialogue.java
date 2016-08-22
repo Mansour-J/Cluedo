@@ -27,7 +27,7 @@ public class GenericDialogue extends JDialog {
     	super(parent, "Selecting Characters ...", false);
         this.characters = cards;
         this.cluedo = cluedo;
-		setSize(800, 800);
+		setSize(520, 720);
 		setVisible(true);
 		setLayout(new GridLayout(3, 4));
 

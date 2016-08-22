@@ -36,7 +36,7 @@ public class SelectCharacters extends JDialog implements ActionListener {
 		this.cluedo = cluedo;
 		this.parent = owner;
 
-		setSize(800, 800);
+		setSize(520, 500);
 
 		sc = new JButton(new ImageIcon("images/characters/MISS_SCARLETTE.png"));
 		sc.setActionCommand("MISS_SCARLETTE");
