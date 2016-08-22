@@ -26,6 +26,8 @@ public class AccusationDialog extends JDialog implements ActionListener {
     int index = -1;
     private JFrame parent;
 
+    // 580, 760
+
     public AccusationDialog(JFrame parent, List<Card> cards, Cluedo cluedo, int num) {
         super((Window) null);
         //super(parent, "Selecting Characters ...", false);
@@ -33,7 +35,7 @@ public class AccusationDialog extends JDialog implements ActionListener {
         this.cards = cards;
         this.numOfCardsToSelect = num;
         this.parent = parent;
-        setSize(800, 800);
+        setSize(520, 720);
         setVisible(true);
         setLayout(new GridLayout(3, 3));
 
