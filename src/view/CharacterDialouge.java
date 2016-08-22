@@ -29,13 +29,6 @@ public class CharacterDialouge extends JDialog implements ActionListener {
 
 	public CharacterDialouge(BoardFrame frame, Cluedo cluedo) {
 
-		/*
-		 * Object[] possibilities = { "3", "4", "5", "6" };
-		 *
-		 * String numPlayer = (String) JOptionPane.showInputDialog(frame,
-		 * "How many players you want to play with", "Players", 1, null,
-		 * possibilities, "3");
-		 */
 		// In initialization code:
 		// Create the radio buttons.
 
@@ -93,15 +86,6 @@ public class CharacterDialouge extends JDialog implements ActionListener {
 		temp.setResizable(false);
 		temp.setSize(new Dimension(700, 700));
 		temp.setTitle("Select number of players");
-		/*
-		 *
-		 *
-		 * int numPlayers = 3;
-		 *
-		 * SelectCharacters mansour = new SelectCharacters(frame, numPlayers,
-		 * cluedo); mansour.setVisible(true);
-		 */
-
 	}
 
 	@Override

@@ -117,53 +117,51 @@ public class MenuPanel extends JPanel implements ActionListener {
 		rc.forEach(c -> roomCards.add(c));
 
 		switch (e.getActionCommand()) {
-		case "Move":
-			if (cluedo.hasPlayerRolledDice) {
-				JOptionPane.showMessageDialog(this, "You can only roll the dice once per turn", "Error",
-						JOptionPane.ERROR_MESSAGE);
-				return;
-			}
-			new DiceDialogue(jFrame, cluedo);
-			break;
 
-		case "Show_Hand":
-			System.out.println(cluedo.getCurrentPlayer().printCards());
-			List<cards.Card> cards = cluedo.getCurrentPlayer().getCards();
-			new GenericDialogue(jFrame, cards, cluedo);
-			break;
+			case "Move":
+                if(cluedo.hasPlayerRolledDice){
+                    JOptionPane.showMessageDialog(this, "You can only roll the dice once per turn", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+				new DiceDialogue(jFrame, cluedo);
+				break;
 
-		case "Suggest":
+			case "Show_Hand":
+				System.out.println(cluedo.getCurrentPlayer().printCards());
+				List<cards.Card> cards = cluedo.getCurrentPlayer().getCards();
+				new GenericDialogue(jFrame, cards, cluedo);
+				break;
 
-			// Weapons
-			new AccusationDialog(jFrame, weaponCards, cluedo);
-			// characters
-			new AccusationDialog(jFrame, characterCards, cluedo);
-			Accusation.suggest(cluedo, jFrame);
-			break;
+			case "Suggest":
 
-		case "Accuse":
+				//Weapons
+				new AccusationDialog(jFrame, weaponCards, cluedo, 2);
+				//characters
+				new AccusationDialog(jFrame, characterCards, cluedo, 2);
+				break;
 
-			// Weapons
-			new AccusationDialog(jFrame, weaponCards, cluedo);
-			// Characters
-			new AccusationDialog(jFrame, characterCards, cluedo);
-			// Rooms
-			new AccusationDialog(jFrame, roomCards, cluedo);
+			case "Accuse":
 
-			System.out.println(Accusation.selectedCards.size());
-			Accusation.accuse(cluedo, jFrame);
+				// Weapons
+				new AccusationDialog(jFrame, weaponCards, cluedo, 3);
+				// Characters
+				new AccusationDialog(jFrame, characterCards, cluedo, 3);
+                // Rooms
+                new AccusationDialog(jFrame, roomCards, cluedo, 3);
 
-			break;
 
-		case "End_Turn":
-			cluedo.nextPlayer();
-			Player player = cluedo.getCurrentPlayer();
-			String t = "Its now: \n" + player.getCharacter().toString() + "'s turn. \n" + "You are at position: "
-					+ player.x() + ", " + player.y();
-			textAreaAnnounce.setText(t);
-			break;
-		default:
-			throw new CluedoError("Unrecognised button action command");
+                break;
+
+			case "End_Turn":
+				cluedo.nextPlayer();
+				Player player  = cluedo.getCurrentPlayer();
+				String t = "Its now: \n" + player.getCharacter().toString() + "'s turn. \n" + "You are at position: " +
+						player.x() + ", " + player.y();
+				textAreaAnnounce.setText(t);
+				break;
+			default:
+				throw new CluedoError("Unrecognised button action command");
 
 		}
 

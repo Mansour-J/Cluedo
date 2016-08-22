@@ -77,36 +77,47 @@ public class SelectCharacters extends JDialog implements ActionListener {
 			characters.add(CharacterCard.Character.MISS_SCARLETTE);
 			sc.setIcon(questionMark);
 			sc.setActionCommand("none");
+			sc.setBorder(BorderFactory.createEmptyBorder());
 			break;
 		case "COLENEL_MUSTARD":
 
 			characters.add(CharacterCard.Character.COLENEL_MUSTARD);
 			mustard.setIcon(questionMark);
 			mustard.setActionCommand("none");
+			mustard.setBorder(BorderFactory.createEmptyBorder());
+
 			break;
 		case "MRS_WHITE":
 
 			characters.add(CharacterCard.Character.MRS_WHITE);
 			white.setIcon(questionMark);
 			white.setActionCommand("none");
+			white.setBorder(BorderFactory.createEmptyBorder());
+
 			break;
 		case "THE_REVEREND_GREEN":
 
 			characters.add(CharacterCard.Character.THE_REVEREND_GREEN);
 			green.setIcon(questionMark);
 			green.setActionCommand("none");
+			green.setBorder(BorderFactory.createEmptyBorder());
+
 			break;
 		case "MRS_PEACOCK":
 
 			characters.add(CharacterCard.Character.MRS_PEACOCK);
 			peacock.setIcon(questionMark);
 			peacock.setActionCommand("none");
+			peacock.setBorder(BorderFactory.createEmptyBorder());
+
 			break;
 		case "PROFESSOR_PLUM":
 
 			characters.add(CharacterCard.Character.PROFESSOR_PLUM);
 			plum.setIcon(questionMark);
 			plum.setActionCommand("none");
+			plum.setBorder(BorderFactory.createEmptyBorder());
+
 			break;
 		default:
 			numPlayer++;
