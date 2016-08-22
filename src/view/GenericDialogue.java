@@ -29,7 +29,7 @@ public class GenericDialogue extends JDialog {
         this.cluedo = cluedo;
 		setSize(800, 800);
 		setVisible(true);
-		setLayout(new GridLayout(3, 3));
+		setLayout(new GridLayout(3, 4));
 
 		for (Card c : cards) {
 			JButton tmp;

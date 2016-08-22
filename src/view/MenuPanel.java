@@ -135,22 +135,20 @@ public class MenuPanel extends JPanel implements ActionListener {
 			case "Suggest":
 
 				//Weapons
-				new AccusationDialog(jFrame, weaponCards, cluedo);
+				new AccusationDialog(jFrame, weaponCards, cluedo, 2);
 				//characters
-				new AccusationDialog(jFrame, characterCards, cluedo);
-                Accusation.suggest(cluedo, jFrame);
+				new AccusationDialog(jFrame, characterCards, cluedo, 2);
 				break;
 
 			case "Accuse":
 
 				// Weapons
-				new AccusationDialog(jFrame, weaponCards, cluedo);
+				new AccusationDialog(jFrame, weaponCards, cluedo, 3);
 				// Characters
-				new AccusationDialog(jFrame, characterCards, cluedo);
+				new AccusationDialog(jFrame, characterCards, cluedo, 3);
                 // Rooms
-                new AccusationDialog(jFrame, roomCards, cluedo);
+                new AccusationDialog(jFrame, roomCards, cluedo, 3);
 
-                Accusation.accuse(cluedo, jFrame);
 
                 break;
 
