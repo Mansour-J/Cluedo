@@ -1,20 +1,15 @@
 package util;
 
 import cards.Card;
-import cards.CharacterCard;
 import cards.RoomCard;
-import cards.WeaponCard;
 import cluedo.Cluedo;
-import view.AccusationDialog;
 import view.Board;
 import cluedo.Game;
 import cluedo.Player;
 import squares.RoomSquare;
-import view.GenericDialogue;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -28,86 +23,66 @@ public class Accusation {
     /**
      * Accuse a player of the crime
      */
-    public static void accuse(Player currentPlayer, Cluedo cluedo, JFrame parent) {
-        Game currentGame = cluedo.getGame();
-        Board board = currentGame.getBoard();
-        List<Card> solution = getWeaponCharacterRoom(currentPlayer, cluedo, parent);
+    public static void accuse(Cluedo cluedo, JFrame parent) throws CluedoError{
+        // Should have character, weapon and room card in selectedCards
+        if(selectedCards.size() != 3)
+            throw new CluedoError("Fucking cunt, should be three cards here");
 
-        // Check solution
-        if (currentGame.accuse(solution)) { // They are correct
-            System.out.println("Well done, " + currentPlayer.getCharacter().toString() + ", you have won the game!");
+        Game currentGame = cluedo.getGame();
+        if (currentGame.accuse(selectedCards)) {
+            // They won the game
+            JOptionPane.showMessageDialog(parent, "Congratulations, you won the game!", "Game Over",
+                    JOptionPane.PLAIN_MESSAGE);
             currentGame.finish();
 
-        } else { // Incorrect
-            System.out.println("You made an invalid accusation, you are now eliminated.");
-            currentPlayer.elimate();
+        } else {
+            // Incorrect accusation
+            JOptionPane.showMessageDialog(parent, "Sorry, that was an invalid accusation, you are now eliminated from the game." +
+                    "", "Incorrect Accusation",
+                    JOptionPane.PLAIN_MESSAGE);
+            cluedo.getCurrentPlayer().elimate();
         }
     }
 
     /**
      * Suggest a player of the crime
      */
-    public static void suggest(Player currentPlayer, Cluedo cluedo, JFrame parent) {
+    public static void suggest(Cluedo cluedo, JFrame parent) {
+        // Should have character and weapon card in selectedCards
+        if(selectedCards.size() != 2)
+            throw new CluedoError("Fucking cunt, should be two cards here");
+
         Game currentGame = cluedo.getGame();
-        List<Card> solution = getWeaponCharacterRoom(currentPlayer, cluedo, parent);
-        Card cardProvedWrong = proveSolutionWrong(solution, currentGame.getPlayers());
+        try {
+            selectedCards.add(getPlayersCurrentRoomCard(cluedo)); // Add the players current room
+        }catch(CluedoError error){
+            JOptionPane.showMessageDialog(parent, error.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        Card cardProvedWrong = proveSolutionWrong(selectedCards, currentGame.getPlayers());
 
         // Check solution
-        if (cardProvedWrong == null) { // They are correct
-            System.out.println("No one was able to disprove your suggestion.");
+        if (cardProvedWrong == null) {
+            // Correct suggestion
+            JOptionPane.showMessageDialog(parent, "No one was able to disprove your suggestion", "Suggestion",
+                    JOptionPane.PLAIN_MESSAGE);
 
-        } else  // Incorrect
+        } else
+            // Incorrect suggestion
             System.out.println("Incorrect suggestion. A player has card: " + cardProvedWrong.toString());
+            JOptionPane.showMessageDialog(parent, "Incorrect suggestion. A player has card: " + cardProvedWrong.toString(),
+                    "Incorrect Suggestion", JOptionPane.PLAIN_MESSAGE);
     }
 
     /**
-     * Assists the Suggest and Accuse methods by getting the players room, and what weapon they believed killed another
-     * character.
-     *
-     * @return A list of cards with length = 3, and contains the current room the player is in, the weapon they believe
-     * killed the character, and the character that died
+     * Assists the Suggest and Accuse methods by getting the players current room
+     * @return
      */
-    public static List<Card> getWeaponCharacterRoom(Player currentPlayer, Cluedo cluedo, JFrame parent) {
-
-        // Character
-        List<CharacterCard> characterCards = CharacterCard.generateObjects();
-        final List<Card> cards = new ArrayList<>();
-        for(CharacterCard c : characterCards)
-            cards.add(c);
-        new GenericDialogue(parent, cards, cluedo);
-        while (selectedCards.size() == 0) {
-            // Do nothing
-            int index = 0;
-            index++;
-        }
-
-        Card characterAccused = selectedCards.get(0);
-
-        // Weapon
-        List<WeaponCard> weaponCards = WeaponCard.generateObjects();
-        final List<Card> cards2 = new ArrayList<>();
-        weaponCards.forEach(c -> cards2.add(c));
-        new AccusationDialog(parent, cards2, cluedo);
-        while (selectedCards.size() == 1) {
-            // Do nothing
-        }
-        Card weaponAccused = selectedCards.get(1);
-
-        // RoomSquare
-        int playerX = currentPlayer.x();
-        int playerY = currentPlayer.y();
-        RoomCard roomAccused = null;
-        try {
-            RoomSquare roomSquare = cluedo.getGame().getBoard().getRoom(playerX, playerY);
-            roomAccused = new RoomCard(roomSquare.getName());
-
-        } catch (CluedoError e) {
-            System.out.println(e.getMessage());
-            return Arrays.asList(); // Can't accuse if not in the room
-        }
-
-        // Return the three cards
-        return Arrays.asList(characterAccused, weaponAccused, roomAccused);
+    public static RoomCard getPlayersCurrentRoomCard(Cluedo cluedo) throws CluedoError{
+        int playerX = cluedo.getCurrentPlayer().x();
+        int playerY = cluedo.getCurrentPlayer().y();
+        RoomSquare roomSquare = cluedo.getGame().getBoard().getRoom(playerX, playerY);
+        return new RoomCard(roomSquare.getName());
     }
 
     /**

@@ -17,6 +17,7 @@ import cards.WeaponCard;
 import cluedo.Cluedo;
 import cluedo.Game;
 import cluedo.Player;
+import util.Accusation;
 import util.CluedoError;
 
 /**
@@ -136,6 +137,7 @@ public class MenuPanel extends JPanel implements ActionListener {
 				new AccusationDialog(jFrame, weaponCards, cluedo);
 				//characters
 				new AccusationDialog(jFrame, characterCards, cluedo);
+                Accusation.suggest(cluedo, jFrame);
 				break;
 
 			case "Accuse":
@@ -146,6 +148,9 @@ public class MenuPanel extends JPanel implements ActionListener {
 				new AccusationDialog(jFrame, characterCards, cluedo);
                 // Rooms
                 new AccusationDialog(jFrame, roomCards, cluedo);
+
+                Accusation.accuse(cluedo, jFrame);
+
                 break;
 
 			case "End_Turn":
