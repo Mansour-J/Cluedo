@@ -133,6 +133,12 @@ public class BoardFrame extends JFrame {
 		return this.menuPanel;
 	}
 
+	public void setDisplayText(String text){
+		if(menuPanel != null){
+			menuPanel.getTextArea().setText(text);
+		}
+	}
+
 	public BoardCanvas getCanvas() {
 		return canvas;
 	}

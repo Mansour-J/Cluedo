@@ -40,13 +40,14 @@ public abstract class Card {
         return value != null ? value.equals(card.value) : card.value == null;
     }
 
+    public Enum getValue() {
+        return this.value;
+    }
+
+
     @Override
     public int hashCode() {
         return value != null ? value.hashCode() : 0;
-    }
-
-    public Enum getValue() {
-        return this.value;
     }
 
     @Override

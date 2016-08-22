@@ -44,6 +44,7 @@ public class Game {
         this.finished = false;
         this.board = Board.parseBoard(boardFile);
         board.setSpawnLocations(players);
+        System.out.println("Solution: " + solution);
     }
 
     /**

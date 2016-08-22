@@ -74,19 +74,19 @@ public class BoardCanvas extends Canvas {
                             JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-
+                parent.setDisplayText("You have " + cluedo.getDiceRoll() + " steps left to move");
+                repaint();
                 int x = e.getX() / 20;
                 int y = e.getY() / 20;
                 xClick = x;
                 yClick = y;
                 try {
                     cluedo.movePlayer(x, y);
+                    parent.setDisplayText("You have " + cluedo.getDiceRoll() + " steps left to move");
                     repaint();
                 }catch (CluedoError error){
-                    error.printStackTrace();
                     JOptionPane.showMessageDialog(parent, error.getMessage(), "Error",
                             JOptionPane.ERROR_MESSAGE);
-                    // TODO
                 }
             }
 

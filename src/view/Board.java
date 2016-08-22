@@ -67,7 +67,7 @@ public class Board {
         }
         Square square = board[x][y];
         if (square == null || square.getClass() != RoomSquare.class)
-            throw new CluedoError("You must be in a room to make an accusation");
+            throw new CluedoError("You must be in a room to make a suggestion");
         return (RoomSquare) square;
     }
 
