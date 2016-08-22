@@ -89,7 +89,7 @@ public class Game {
      * Accuse a player, character and weapon
      * @param cards
      * @return if the accusation is correct
-     */x
+     */
     public boolean accuse(List<Card> cards) {
         if (cards.size() == 0) // An error occoured
             return false;

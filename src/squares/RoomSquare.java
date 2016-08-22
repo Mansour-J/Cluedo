@@ -11,9 +11,6 @@ import java.util.List;
  */
 public class RoomSquare extends Square implements Walkable{
     private RoomCard.Room name;
-    private List<Player> playersInRoom;
-    private List<DoorSquare> doors;
-
 
     /**
      * Construct a new roomn square
@@ -21,7 +18,6 @@ public class RoomSquare extends Square implements Walkable{
      */
     public RoomSquare(RoomCard.Room name){
         this.name = name;
-        playersInRoom = new ArrayList<>();
     }
 
     @Override
