@@ -84,8 +84,6 @@ public class CharacterDialouge extends JDialog implements ActionListener {
         temp.setTitle("Select number of players");
         setSize(800, 800);
         temp.setSize(800, 800);
-
-
     }
 
 

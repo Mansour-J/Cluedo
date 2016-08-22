@@ -14,6 +14,13 @@ public class PathFinder {
 
     static Board board;
 
+    /**
+     * Finds a path from the source to the destination using a modified version of A* so it works in a 2D array.
+     * @param brd
+     * @param src
+     * @param dest
+     * @return
+     */
     public static List<Point> findPath(Board brd, Point src, Point dest) {
         board = brd;
 
@@ -68,6 +75,9 @@ public class PathFinder {
     }
 
 
+    /**
+     * This is a static inner class used for assisting with the searching paths on the board
+     */
     private static class SearchNode implements Comparable {
         public Point node;
         public SearchNode parent;

@@ -7,12 +7,18 @@ import java.util.List;
 
 /**
  * Created by Adam on 25/07/16.
+ * The room square is a square on the board that represents a room
  */
 public class RoomSquare extends Square implements Walkable{
     private RoomCard.Room name;
     private List<Player> playersInRoom;
     private List<DoorSquare> doors;
 
+
+    /**
+     * Construct a new roomn square
+     * @param name
+     */
     public RoomSquare(RoomCard.Room name){
         this.name = name;
         playersInRoom = new ArrayList<>();

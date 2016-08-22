@@ -18,29 +18,32 @@ import java.util.List;
  */
 public class Accusation {
 
+    /**
+     * Current cards in the accusation. 2 cards for suggest (automatically adds the 3rd being the players current room),
+     * 3 cards for suggest.
+     */
     public static List<Card> selectedCards = new ArrayList<>();
 
     /**
      * Accuse a player of the crime
      */
-    public static String accuse(Cluedo cluedo, JFrame parent) throws CluedoError{
+    public static void accuse(Cluedo cluedo, JFrame parent) throws CluedoError{
         // Should have character, weapon and room card in selectedCards
         if(selectedCards.size() != 3)
-            throw new CluedoError("Fucking cunt, should be three cards here");
+            throw new CluedoError("Should be three cards here");
 
         Game currentGame = cluedo.getGame();
         if (currentGame.accuse(selectedCards)) {
             // They won the game
             currentGame.finish();
-            return "Congratulations, you won the game!";
-
+            JOptionPane.showMessageDialog(parent, "Congratulations, you won the game!"
+                    , "Incorrect Accusation", JOptionPane.PLAIN_MESSAGE);
+            System.exit(0);
         } else {
             // Incorrect accusation
             cluedo.getPlayers().remove(cluedo.getCurrentPlayer());
             JOptionPane.showMessageDialog(parent, "Sorry, that was an invalid accusation, you are now eliminated from the game."
                     , "Incorrect Accusation", JOptionPane.PLAIN_MESSAGE);
-            return "Sorry, that was an invalid accusation, you are now eliminated from the game.";
-
         }
     }
 
@@ -50,7 +53,8 @@ public class Accusation {
     public static void suggest(Cluedo cluedo, JFrame parent) {
         // Should have character and weapon card in selectedCards
         if(selectedCards.size() != 2)
-            throw new CluedoError("Fucking cunt, should be two cards here");
+            throw new CluedoError("Should be two cards here");
+
 
         Game currentGame = cluedo.getGame();
         try {
@@ -68,18 +72,21 @@ public class Accusation {
             JOptionPane.showMessageDialog(parent, "No one was able to disprove your suggestion", "Suggestion",
                     JOptionPane.PLAIN_MESSAGE);
 
-        } else
+
+        } else {
             // Incorrect suggestion
             System.out.println("Incorrect suggestion. A player has card: " + cardProvedWrong.toString());
             JOptionPane.showMessageDialog(parent, "Incorrect suggestion. A player has card: " + cardProvedWrong.toString(),
                     "Incorrect Suggestion", JOptionPane.PLAIN_MESSAGE);
+        }
     }
 
+
     /**
-     * Assists the Suggest and Accuse methods by getting the players current room
+     * Gets the players current room
      * @return
      */
-    public static RoomCard getPlayersCurrentRoomCard(Cluedo cluedo) throws CluedoError{
+    public static RoomCard getPlayersCurrentRoomCard(Cluedo cluedo) throws CluedoError {
         int playerX = cluedo.getCurrentPlayer().x();
         int playerY = cluedo.getCurrentPlayer().y();
         RoomSquare roomSquare = cluedo.getGame().getBoard().getRoom(playerX, playerY);

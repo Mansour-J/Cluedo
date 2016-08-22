@@ -17,6 +17,7 @@ import util.CluedoError;
 
 /**
  * Created by javahemans on 14/08/16.
+ * This is used to display the cards to select for an accusation or suggestion
  */
 public class AccusationDialog extends JDialog implements ActionListener {
 
@@ -26,11 +27,15 @@ public class AccusationDialog extends JDialog implements ActionListener {
     int index = -1;
     private JFrame parent;
 
-    // 580, 760
-
+    /**
+     * Create a new Window
+     * @param parent
+     * @param cards
+     * @param cluedo
+     * @param num
+     */
     public AccusationDialog(JFrame parent, List<Card> cards, Cluedo cluedo, int num) {
         super((Window) null);
-        //super(parent, "Selecting Characters ...", false);
         this.cluedo = cluedo;
         this.cards = cards;
         this.numOfCardsToSelect = num;

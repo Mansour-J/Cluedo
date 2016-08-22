@@ -82,13 +82,14 @@ public class Game {
         Point start = new Point(startX, startY);
         Point end = new Point(x, y);
         PlayerMover.movePlayer(board, player, start, end);
+        System.out.println("Solution: " + solution);
     }
 
     /**
      * Accuse a player, character and weapon
      * @param cards
      * @return if the accusation is correct
-     */
+     */x
     public boolean accuse(List<Card> cards) {
         if (cards.size() == 0) // An error occoured
             return false;
@@ -104,7 +105,6 @@ public class Game {
         return true;
     }
 
-
     /**
      * Set the solution. The length must be equal to 3, and contain the player, character and weapon.
      * @param cards
@@ -114,14 +114,6 @@ public class Game {
             throw new CluedoError("Invalid number of cards. Must be equal to 3");
         }
         this.solution = cards;
-    }
-
-    /**
-     * Has the game finished?
-     * @return
-     */
-    public boolean isFinished() {
-        return this.finished;
     }
 
     /**
@@ -136,7 +128,4 @@ public class Game {
     }
     public List<Player> getPlayers(){ return this.players;}
 
-    public List<Card> getSolution() {
-        return solution;
-    }
 }

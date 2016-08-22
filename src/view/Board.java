@@ -67,14 +67,13 @@ public class Board {
         }
         Square square = board[x][y];
         if (square == null || square.getClass() != RoomSquare.class)
-            throw new CluedoError("You must be in a room to make an accusation");
+            throw new CluedoError("You must be in a room to make a suggestion");
         return (RoomSquare) square;
     }
 
 
     /**
      * Gets the Point on the board that the stair square teleports to
-     *
      * @param start
      * @return
      */
@@ -94,6 +93,12 @@ public class Board {
         return null;
     }
 
+    /**
+     * Gets the neighbouring square from sq in the direction dir.
+     * @param sq
+     * @param dir
+     * @return
+     */
     public Point getTile(Point sq, Direction dir) {
         int x = sq.getX();
         int y = sq.getY();
@@ -245,6 +250,13 @@ public class Board {
         }
     }
 
+
+    /**
+     * Cost between two nodes, used for heurisitic in A*
+     * @param src
+     * @param dest
+     * @return
+     */
     public int cost(Point src, Point dest) {
         if(src == null || dest == null)
             throw new CluedoError("Shouldn't have a null point");
@@ -256,7 +268,6 @@ public class Board {
     public int getWidth() {
         return this.width;
     }
-
     public int getHeight() {
         return this.height;
     }
