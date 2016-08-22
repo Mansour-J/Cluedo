@@ -32,13 +32,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
- * The board canvas is responsible for drawing the game. Currently, it uses a
- * relatively primitive form of double buffering to ensure there's no flicker
- * during frame updates. This class also generates a number of images using
- * Java's graphics capabilities, which saves having to have lots of very similar
- * images for the different directions.
- *
- * @author djp
+ * The board canvas is responsible for drawing the game.
  */
 public class BoardCanvas extends Canvas {
     private static final String IMAGE_PATH = "images/";
@@ -54,6 +48,11 @@ public class BoardCanvas extends Canvas {
     int xClick;
     int yClick;
 
+    /**
+     * Create a new board canvas
+     * @param cluedo
+     * @param parent
+     */
     public BoardCanvas(Cluedo cluedo, BoardFrame parent) {
         this.cluedo = cluedo;
         this.parent = parent;
@@ -108,6 +107,9 @@ public class BoardCanvas extends Canvas {
         });
     }
 
+    /**
+     * re-draw the graphics
+     */
     public void repaint() {
         paint(getGraphics());
     }
@@ -122,6 +124,10 @@ public class BoardCanvas extends Canvas {
         drawCharacterTokens(g);
     }
 
+    /**
+     * Draws the characters tokens on top of the image on the board
+     * @param g
+     */
     private void drawCharacterTokens(Graphics g) {
         if (cluedo.getGame() == null || cluedo.getGame().getPlayers() == null)
             return;
@@ -133,25 +139,6 @@ public class BoardCanvas extends Canvas {
             g.drawImage(img, x * 20, y * 20, 20, 20, null);
         }
     }
-
-    /**
-     * Rotate an image a given number of degrees.
-     *
-     * @param src
-     * @param angle
-     * @return
-     */
-    public static Image rotate(Image src, double angle) {
-        int width = src.getWidth(null);
-        int height = src.getHeight(null);
-        BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g = img.createGraphics();
-        g.rotate(Math.toRadians(angle), width / 2, height / 2);
-        g.drawImage(src, 0, 0, width, height, null);
-        g.dispose();
-        return img;
-    }
-
 
     /**
      * Load an image from the file system, using a given filename.
@@ -170,5 +157,4 @@ public class BoardCanvas extends Canvas {
         }
         return null;
     }
-
 }

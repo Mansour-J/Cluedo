@@ -5,6 +5,8 @@ import cluedo.Player;
 
 /**
  * Created by Adam on 25/07/16.
+ * This is a basic square that all tiles on the board extend. This is so we have some basic methods that all squares
+ * can utilise and we can provide a type for the 2d array.
  */
 public abstract class Square {
     private Player player;
@@ -13,7 +15,6 @@ public abstract class Square {
 
     /**
      * Set the player in the square
-     *
      * @param p
      */
     public void enterSquare(Player p) throws CluedoError {
@@ -24,7 +25,6 @@ public abstract class Square {
 
     /**
      * Remove the player from the square
-     *
      */
     public void leaveSquare() {
         player = null;

@@ -5,8 +5,6 @@ import cards.CharacterCard;
 import cards.RoomCard;
 import cards.WeaponCard;
 import util.CluedoError;
-import util.PlayerMover;
-import util.Point;
 import view.Board;
 
 import java.util.List;
@@ -48,44 +46,6 @@ public class Game {
     }
 
     /**
-     * Moves the player on the board
-     * @param player
-     * @param dir
-     * @param steps
-     */
-    public void movePlayer(Player player, Board.Direction dir, int steps) throws CluedoError {
-        int x = player.x();
-        int y = player.y();
-        int startX = x;
-        int startY = y;
-
-        switch (dir) {
-            case UP:
-                y -= steps;
-                break;
-
-            case DOWN:
-                y += steps;
-                break;
-
-            case LEFT:
-                x -= steps;
-                break;
-
-            case RIGHT:
-                x += steps;
-                break;
-        }
-
-        if (x >= board.getWidth() || x < 0 || y >= board.getHeight() || y < 0)
-            throw new CluedoError("You cannot move that many steps in that direction");
-
-        Point start = new Point(startX, startY);
-        Point end = new Point(x, y);
-        PlayerMover.movePlayer(board, player, start, end);
-    }
-
-    /**
      * Accuse a player, character and weapon
      * @param cards
      * @return if the accusation is correct
@@ -105,7 +65,6 @@ public class Game {
         return true;
     }
 
-
     /**
      * Set the solution. The length must be equal to 3, and contain the player, character and weapon.
      * @param cards
@@ -118,26 +77,13 @@ public class Game {
     }
 
     /**
-     * Has the game finished?
-     * @return
-     */
-    public boolean isFinished() {
-        return this.finished;
-    }
-
-    /**
      * Finish the game, called when a player wins
      */
     public void finish() {
         this.finished = true;
     }
-
     public Board getBoard() {
         return board;
     }
     public List<Player> getPlayers(){ return this.players;}
-
-    public List<Card> getSolution() {
-        return solution;
-    }
 }

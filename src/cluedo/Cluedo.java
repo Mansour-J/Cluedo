@@ -8,6 +8,8 @@ import cards.Card;
 import cards.CharacterCard;
 import cards.RoomCard;
 import cards.WeaponCard;
+import squares.Square;
+import squares.StairSquare;
 import util.*;
 import view.Board;
 
@@ -30,7 +32,6 @@ public class Cluedo {
      * Construct a new game of Cluedo
      */
     public Cluedo() {
-
     }
 
     /**
@@ -81,9 +82,7 @@ public class Cluedo {
 
     }
 
-    public void updateDiceRoll(int diceRoll) {
-        this.diceRoll = diceRoll;
-    }
+
 
     public void movePlayer(int x, int y) throws CluedoError {
         if(diceRoll == 0)
@@ -110,18 +109,14 @@ public class Cluedo {
 
         // Update the players path
         for (Point p : path) {
+            Square s = board.getBoard()[p.getX()][p.getY()];
+            if(s instanceof StairSquare){
+                p = board.getStairDestination((StairSquare)s);
+                currentPlayer.setPos(p.getX(), p.getY());
+                return;
+            }
             currentPlayer.setPos(p.getX(), p.getY());
         }
-    }
-
-    /**
-     * Adds a message to the current players Journal. The current player should not be null when this is called.
-     *
-     * @param message
-     */
-    public void addToCurrentPlayersJournal(String message) {
-        assert currentPlayer != null;
-        currentPlayer.getJournal().addToJournal(message);
     }
 
     /**
@@ -151,18 +146,44 @@ public class Cluedo {
 
     /* Getters and setters */
 
+
+
+    /**
+     * Update the dice roll for the current turn
+     * @param diceRoll
+     */
+    public void updateDiceRoll(int diceRoll) {
+        this.diceRoll = diceRoll;
+    }
+
+    /**
+     * Get the current player
+     * @return
+     */
     public Player getCurrentPlayer() {
         return this.currentPlayer;
     }
 
+    /**
+     * Get all players
+     * @return
+     */
     public List<Player> getPlayers() {
         return this.players;
     }
 
+    /**
+     * Get the current game
+     * @return
+     */
     public Game getGame() {
         return this.currentGame;
     }
 
+    /**
+     * Get the current dice roll
+     * @return
+     */
     public int getDiceRoll() {
         return diceRoll;
     }

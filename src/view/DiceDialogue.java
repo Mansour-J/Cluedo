@@ -16,7 +16,8 @@ import javax.swing.Timer;
 import cluedo.Cluedo;
 
 /**
- * Created by javahemans on 14/08/16.
+ * Created by Adam on 14/08/16.
+ * This simulates a dice roll. The value rolled is the number of steps the player can move in one turn.
  */
 public class DiceDialogue extends JDialog implements ActionListener {
 
@@ -30,6 +31,11 @@ public class DiceDialogue extends JDialog implements ActionListener {
     private int dice2Value;
     private Timer timer;
 
+    /**
+     * Construct a new dice
+     * @param parent
+     * @param cluedo
+     */
     public DiceDialogue(JFrame parent, Cluedo cluedo) {
 
         super(parent, "Dice Roll", false);
@@ -44,11 +50,11 @@ public class DiceDialogue extends JDialog implements ActionListener {
         dice2 = new JButton(new ImageIcon(pathToDice + 4 + ".png"));
         dice2.setSize(10, 10);
 
-
         dice1.addActionListener(this);
         dice2.addActionListener(this);
         add(dice1);
         add(dice2);
+
         dice1.setVisible(true);
         dice2.setVisible(true);
         dice1.setBorder(BorderFactory.createEmptyBorder());
@@ -56,6 +62,9 @@ public class DiceDialogue extends JDialog implements ActionListener {
         run();
     }
 
+    /**
+     * Run the dice animation until the user clicks on a die.
+     */
     public void run() {
         timer = new Timer(200, e -> {
             dice1Value = (int) (Math.random() * 5) + 1;
@@ -69,6 +78,12 @@ public class DiceDialogue extends JDialog implements ActionListener {
     }
 
     @Override
+    /**
+     * Oop would you look at that?
+     * What?
+     * A die was clicked!
+     * I bet you aren't even reading this
+     */
     public void actionPerformed(ActionEvent e) {
         // Stop timer and show dice for 100 milli-sec
         timer.stop();
@@ -100,16 +115,9 @@ public class DiceDialogue extends JDialog implements ActionListener {
         add(textField);
         cluedo.updateDiceRoll(total);
 
-
         cluedo.canPlayerMove = true;
         cluedo.hasPlayerRolledDice = true;
 
-
         dispose();
-
-
-
-
-
     }
 }

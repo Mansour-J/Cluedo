@@ -1,6 +1,7 @@
 package util;
 
-import org.junit.Test;
+import cluedo.Cluedo;
+import org.testng.annotations.Test;
 
 /**
  * Created by Adam on 2/08/16.

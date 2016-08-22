@@ -18,6 +18,10 @@ import java.util.List;
  */
 public class Accusation {
 
+    /**
+     * Current cards in the accusation. 2 cards for suggest (automatically adds the 3rd being the players current room),
+     * 3 cards for suggest.
+     */
     public static List<Card> selectedCards = new ArrayList<>();
 
     /**
@@ -76,7 +80,7 @@ public class Accusation {
     }
 
     /**
-     * Assists the Suggest and Accuse methods by getting the players current room
+     * Gets the players current room
      * @return
      */
     public static RoomCard getPlayersCurrentRoomCard(Cluedo cluedo) throws CluedoError {

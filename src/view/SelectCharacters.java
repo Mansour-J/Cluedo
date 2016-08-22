@@ -12,6 +12,7 @@ import java.util.*;
 
 /**
  * Created by javahemans on 14/08/16.
+ * This is used to select the characters. Currently it is used at the start of the game for setting up the players
  */
 public class SelectCharacters extends JDialog implements ActionListener {
 
@@ -29,6 +30,12 @@ public class SelectCharacters extends JDialog implements ActionListener {
 	ArrayList<CharacterCard.Character> characters;
 	ImageIcon questionMark = new ImageIcon("images/misc/Questionmark.png");
 
+	/**
+	 *
+	 * @param owner
+	 * @param numPlayer
+	 * @param cluedo
+     */
 	public SelectCharacters(BoardFrame owner, int numPlayer, Cluedo cluedo) {
 		super(owner, "Selecting Characters ...", false);
 		characters = new ArrayList<>();
@@ -65,7 +72,6 @@ public class SelectCharacters extends JDialog implements ActionListener {
 			add(b);
 			b.setSize(40,40);
 		}
-
 	}
 
 	@Override
@@ -125,6 +131,7 @@ public class SelectCharacters extends JDialog implements ActionListener {
 			JOptionPane.showMessageDialog(this, "This character had been chosen", "Invalid Selection",
 					JOptionPane.ERROR_MESSAGE);
 		}
+		// Finished adding characters
 		if (numPlayer == 0) {
 			dispose();
 			this.cluedo.setupGame(characters);

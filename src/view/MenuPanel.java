@@ -22,6 +22,8 @@ import util.CluedoError;
 
 /**
  * Created by Adam on 14/08/16.
+ * This is the menu panel that is hosted on the right hand side. It has buttons that the user can interact with
+ * throughout the game
  */
 public class MenuPanel extends JPanel implements ActionListener {
 
@@ -31,8 +33,12 @@ public class MenuPanel extends JPanel implements ActionListener {
 	private Game game;
 	private JFrame jFrame;
 	private JTextArea textAreaAnnounce;
-	DiceDialogue tmp;
 
+	/**
+	 * Create a new pannel
+	 * @param jFrame
+	 * @param cluedo
+     */
 	public MenuPanel(JFrame jFrame, Cluedo cluedo) {
 		this.cluedo = cluedo;
 		this.game = cluedo.getGame();
@@ -40,11 +46,12 @@ public class MenuPanel extends JPanel implements ActionListener {
 		initButtons();
 		setBackground(new Color(255, 255, 255));
 		setPreferredSize(new Dimension(BoardFrame.BOARD_WIDTH - 500, BoardFrame.BOARD_HEIGHT));
-
 	}
 
+	/**
+	 * Set up the buttons
+	 */
 	public void initButtons() {
-
 		// Move Button
 		JButton b1 = new JButton("Move");
 		b1.setActionCommand("Move");
@@ -100,6 +107,9 @@ public class MenuPanel extends JPanel implements ActionListener {
 	}
 
 	@Override
+	/**
+	 * A button was clicked
+	 */
 	public void actionPerformed(ActionEvent e) {
 		// WeaponCards -- WC
 		List<WeaponCard> wc = WeaponCard.generateObjects();
@@ -158,11 +168,13 @@ public class MenuPanel extends JPanel implements ActionListener {
 				break;
 			default:
 				throw new CluedoError("Unrecognised button action command");
-
 		}
-
 	}
 
+	/**
+	 * Return the text pane
+	 * @return
+     */
 	public JTextArea getTextArea() {
 		return this.textAreaAnnounce;
 	}

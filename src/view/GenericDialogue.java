@@ -14,14 +14,13 @@ import util.CluedoError;
 
 /**
  * Created by javahemans on 14/08/16.
+ * This is a generic dialoge used to display any subtype of card to the user.
  */
 public class GenericDialogue extends JDialog {
 
 	Cluedo cluedo;
-
 	List<Card> characters;
-	ImageIcon questionMark = new ImageIcon("images/misc/Questionmark.png");
-	
+
 	public GenericDialogue(JFrame parent, List<Card> cards, Cluedo cluedo) {
 
     	super(parent, "", false);

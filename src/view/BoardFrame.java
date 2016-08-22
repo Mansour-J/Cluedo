@@ -13,6 +13,7 @@ import java.awt.event.KeyListener;
 
 /**
  * Created by Adam on 8/08/16.
+ * This is the entry point of Cluedo and is the frame for holding the canvas and menu pane.
  */
 public class BoardFrame extends JFrame {
 
@@ -21,15 +22,18 @@ public class BoardFrame extends JFrame {
 
 	private final BoardCanvas canvas;
 	private final Cluedo cluedo;
-	private final Toolkit toolkit;
-
 	private MenuPanel menuPanel;
 
+	/**
+	 * Construct a new frame for holding a game of cluedo
+	 * @param title
+	 * @param cluedo
+	 * @param keys
+     */
 	public BoardFrame(String title, Cluedo cluedo, KeyListener[] keys) {
 		super(title);
 		setLayout(new BorderLayout());
 
-		this.toolkit = getToolkit();
 		this.cluedo = cluedo;
 		this.canvas = new BoardCanvas(cluedo, this);
 		this.menuPanel = new MenuPanel(this, cluedo);
@@ -54,6 +58,9 @@ public class BoardFrame extends JFrame {
 		CharacterDialouge dialog = new CharacterDialouge(this, cluedo);
 	}
 
+	/**
+	 * Initilises the menu bar
+	 */
 	public void setMenuBar() {
 		JMenuBar menuBar;
 		JMenu menu;
@@ -80,7 +87,6 @@ public class BoardFrame extends JFrame {
 					BoardFrame ex = new BoardFrame("Adam", cluedo, new KeyListener[0]);
 					ex.setVisible(true);
 				});
-
 			}
 		});
 
@@ -88,20 +94,15 @@ public class BoardFrame extends JFrame {
 		JMenuItem cbMenuItem = new JMenuItem("Quit");
 		cbMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
 		cbMenuItem.setMnemonic(KeyEvent.VK_X);
-
 		menu.add(cbMenuItem);
 
-		cbMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				int action = JOptionPane.showConfirmDialog(BoardFrame.this,
-						"Do you really want to exit the application?", "Confirm Exit", JOptionPane.OK_CANCEL_OPTION);
-
-				if (action == JOptionPane.OK_OPTION) {
-					System.exit(0);
-				}
-			}
-		});
+		cbMenuItem.addActionListener(arg0 -> {
+            int action = JOptionPane.showConfirmDialog(BoardFrame.this,
+                    "Do you really want to exit the application?", "Confirm Exit", JOptionPane.OK_CANCEL_OPTION);
+            if (action == JOptionPane.OK_OPTION) {
+                System.exit(0);
+            }
+        });
 
 		menu.add(cbMenuItem);
 
@@ -119,9 +120,11 @@ public class BoardFrame extends JFrame {
 
 	public void repaint() {
 		canvas.repaint();
-
 	}
 
+	/**
+	 * Sets the text pane to hold the text informing the user whos turn it is and what position they are at.
+	 */
 	public void setCurrentPlayerText() {
 		Player p = cluedo.getCurrentPlayer();
 		String t = "Its now: \n" + p.getCharacter().toString() + "'s turn. \n" + "You are at position: " + p.x() + ", "
@@ -129,20 +132,20 @@ public class BoardFrame extends JFrame {
 		menuPanel.getTextArea().setText(t);
 	}
 
-	public MenuPanel getMenuPannel() {
-		return this.menuPanel;
-	}
-
+	/**
+	 * Set the text pane to have the text 'text'
+	 * @param text
+     */
 	public void setDisplayText(String text){
 		if(menuPanel != null){
 			menuPanel.getTextArea().setText(text);
 		}
 	}
 
-	public BoardCanvas getCanvas() {
-		return canvas;
-	}
-
+	/**
+	 * LEEEEEEEEEEEETS RUN CLUUUUUUUUUUUUUUUUUUUUUEDO!
+	 * @param args
+     */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
 			Cluedo cluedo = new Cluedo();
@@ -150,5 +153,4 @@ public class BoardFrame extends JFrame {
 			ex.setVisible(true);
 		});
 	}
-
 }
