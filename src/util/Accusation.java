@@ -40,7 +40,7 @@ public class Accusation {
             JOptionPane.showMessageDialog(parent, "Sorry, that was an invalid accusation, you are now eliminated from the game." +
                     "", "Incorrect Accusation",
                     JOptionPane.PLAIN_MESSAGE);
-            cluedo.getCurrentPlayer().elimate();
+            cluedo.getPlayers().remove(cluedo.getCurrentPlayer());
         }
     }
 
