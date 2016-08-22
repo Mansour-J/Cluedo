@@ -3,13 +3,11 @@ package cluedo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 import cards.Card;
 import cards.CharacterCard;
 import cards.RoomCard;
 import cards.WeaponCard;
-import squares.Square;
 import util.*;
 import view.Board;
 
@@ -25,7 +23,8 @@ public class Cluedo {
     private Player currentPlayer;
 
     private int diceRoll;
-    public boolean readyToMovePlayer = false;
+    public boolean canPlayerMove = false;
+    public boolean hasPlayerRolledDice = false;
 
     /**
      * Construct a new game of Cluedo
@@ -98,9 +97,7 @@ public class Cluedo {
         Point end = new Point(x, y);
 
         // Find path
-        System.out.println("Finding: " + start.toString() + " " + end.toString());
         List<Point> path = PathFinder.findPath(board, start, end);
-        System.out.println(path.toString());
 
         // Check path length is valid
         if (path.size() > diceRoll)
@@ -109,7 +106,7 @@ public class Cluedo {
         // Update dice roll
         this.diceRoll -= path.size();
         if(this.diceRoll == 0)
-            readyToMovePlayer = false;
+            canPlayerMove = false;
 
         // Update the players path
         for (Point p : path) {
@@ -131,6 +128,7 @@ public class Cluedo {
      * Advance the currentPlayer to be the next player. This is the player after the the currentPlayer in players
      */
     public void nextPlayer() {
+        hasPlayerRolledDice = false;
         if (currentPlayer == null) {
             currentPlayer = players.get(0);
         } else {
@@ -165,4 +163,7 @@ public class Cluedo {
         return this.currentGame;
     }
 
+    public int getDiceRoll() {
+        return diceRoll;
+    }
 }

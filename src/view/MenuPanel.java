@@ -8,14 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.AbstractButton;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.border.Border;
+import javax.swing.*;
 
 import cards.Card;
 import cards.CharacterCard;
@@ -123,6 +116,11 @@ public class MenuPanel extends JPanel implements ActionListener {
 
 		switch (e.getActionCommand()) {
 			case "Move":
+                if(cluedo.hasPlayerRolledDice){
+                    JOptionPane.showMessageDialog(this, "You can only roll the dice once per turn", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 				new DiceDialogue(jFrame, cluedo);
 				break;
 
@@ -142,11 +140,13 @@ public class MenuPanel extends JPanel implements ActionListener {
 
 			case "Accuse":
 
-				//Weapons
+				// Weapons
 				new AccusationDialog(jFrame, weaponCards, cluedo);
-				//characters
+				// Characters
 				new AccusationDialog(jFrame, characterCards, cluedo);
-				break;
+                // Rooms
+                new AccusationDialog(jFrame, roomCards, cluedo);
+                break;
 
 			case "End_Turn":
 				cluedo.nextPlayer();

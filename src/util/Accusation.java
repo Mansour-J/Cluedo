@@ -128,8 +128,4 @@ public class Accusation {
         }
         return null;
     }
-
-    public static void addCard(Card c){
-        selectedCards.add(c);
-    }
 }

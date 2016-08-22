@@ -91,6 +91,7 @@ public class DiceDialogue extends JDialog implements ActionListener {
         textField.setBorder(BorderFactory.createEmptyBorder());
         add(textField);
         cluedo.updateDiceRoll(total);
-        cluedo.readyToMovePlayer = true;
+        cluedo.canPlayerMove = true;
+        cluedo.hasPlayerRolledDice = true;
     }
 }

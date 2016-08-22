@@ -112,7 +112,6 @@ public class Board {
                 break;
         }
         if (x >= 0 && x < width && y >= 0 && y < height) {
-            System.out.printf("Getting tile: x %d, y: %d \n", x, y);
             return new Point(x, y);
         }
 
