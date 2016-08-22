@@ -1,15 +1,19 @@
 package view;
 
 import java.awt.GridLayout;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 
-import cards.Card;
-import cards.*;
-import cards.CharacterCard;
-import cluedo.Cluedo;
+import Model.Card;
+import Model.CharacterCard;
+import Model.RoomCard;
+import Model.WeaponCard;
+import controller.Cluedo;
 import util.CluedoError;
 
 /**

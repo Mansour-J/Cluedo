@@ -1,10 +1,12 @@
 package view;
 
-import cards.CharacterCard;
-import cluedo.Cluedo;
 import util.CluedoError;
 
 import javax.swing.*;
+
+import Model.CharacterCard;
+import controller.Cluedo;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

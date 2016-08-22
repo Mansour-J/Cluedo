@@ -1,15 +1,12 @@
 package view;
 
-import cluedo.Cluedo;
-import cluedo.Player;
-import sun.applet.Main;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
+
+import controller.Cluedo;
+import controller.Player;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
@@ -25,15 +22,14 @@ import java.io.InputStream;
 
 /**
  * Created by Adam on 8/08/16.
- * <<<<<<< HEAD
- * =======
+ * 
  * This is the entry point of Cluedo and is the frame for holding the canvas and menu pane.
- * >>>>>>> e80fc3545cca43dd45f6438fd1d8a0133134105a
+ * 
  */
 public class BoardFrame extends JFrame {
 
-    public static final int BOARD_WIDTH = 700;
-    public static final int BOARD_HEIGHT = 553;
+    public static final int BOARD_WIDTH = 730;
+    public static final int BOARD_HEIGHT = 570;
 
     private final BoardCanvas canvas;
     private final Cluedo cluedo;

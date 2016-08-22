@@ -1,19 +1,23 @@
 package view;
 
-import java.awt.*;
+import java.awt.GridLayout;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 
-import cards.Card;
-import cards.*;
-import cards.CharacterCard;
-import cluedo.Cluedo;
+import Model.Card;
+import Model.CharacterCard;
+import Model.RoomCard;
+import Model.WeaponCard;
+import controller.Cluedo;
 import util.Accusation;
-import util.CluedoError;
 
 /**
  * Created by javahemans on 14/08/16.

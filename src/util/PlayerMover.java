@@ -1,10 +1,10 @@
 package util;
 
 import view.Board;
-import cluedo.Player;
-import squares.DoorSquare;
-import squares.Square;
-import squares.StairSquare;
+import Model.DoorSquare;
+import Model.Square;
+import Model.StairSquare;
+import controller.Player;
 
 /**
  * Created by Adam on 2/08/16.

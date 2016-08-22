@@ -1,4 +1,4 @@
-package squares;
+package Model;
 
 /**
  * Created by Adam on 30/07/16.

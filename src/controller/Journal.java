@@ -1,4 +1,4 @@
-package cluedo;
+package controller;
 
 /**
  * Created by Adam on 25/07/16.

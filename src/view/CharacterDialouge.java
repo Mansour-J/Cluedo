@@ -12,7 +12,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 
-import cluedo.Cluedo;
+import controller.Cluedo;
 
 public class CharacterDialouge extends JDialog implements ActionListener {
 

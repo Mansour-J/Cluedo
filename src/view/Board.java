@@ -1,16 +1,26 @@
 package view;
 
-import cards.RoomCard;
-import cluedo.Player;
-import squares.*;
-import util.CluedoError;
-import util.Point;
-
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 import java.util.regex.Pattern;
+
+import Model.BlankSquare;
+import Model.DoorSquare;
+import Model.HallwaySquare;
+import Model.RoomCard;
+import Model.RoomSquare;
+import Model.SpawnSquare;
+import Model.Square;
+import Model.StairSquare;
+import controller.Player;
+import util.CluedoError;
+import util.Point;
 
 /**
  * Created by Adam on 25/07/16.

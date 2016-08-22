@@ -1,11 +1,12 @@
 package util;
 
-import cards.RoomCard;
-import squares.RoomSquare;
-import squares.Square;
 import view.Board;
 
 import java.util.*;
+
+import Model.RoomCard;
+import Model.RoomSquare;
+import Model.Square;
 
 /**
  * Created by Adam on 14/08/16.

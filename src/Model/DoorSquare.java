@@ -1,4 +1,4 @@
-package squares;
+package Model;
 
 import view.Board;
 

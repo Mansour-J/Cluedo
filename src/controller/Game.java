@@ -1,15 +1,16 @@
-package cluedo;
+package controller;
 
-import cards.Card;
-import cards.CharacterCard;
-import cards.RoomCard;
-import cards.WeaponCard;
 import util.CluedoError;
 import util.PlayerMover;
 import util.Point;
 import view.Board;
 
 import java.util.List;
+
+import Model.Card;
+import Model.CharacterCard;
+import Model.RoomCard;
+import Model.WeaponCard;
 
 /**
  * Created by Adam on 25/07/16.

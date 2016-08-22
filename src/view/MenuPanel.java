@@ -8,16 +8,21 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.AbstractButton;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
-import cards.Card;
-import cards.CharacterCard;
-import cards.RoomCard;
-import cards.WeaponCard;
-import cluedo.Cluedo;
-import cluedo.Game;
-import cluedo.Player;
-import util.Accusation;
+import Model.Card;
+import Model.CharacterCard;
+import Model.RoomCard;
+import Model.WeaponCard;
+import controller.Cluedo;
+import controller.Game;
+import controller.Player;
 import util.CluedoError;
 
 /**
@@ -140,11 +145,12 @@ public class MenuPanel extends JPanel implements ActionListener {
 
 			case "Show_Hand":
 				System.out.println(cluedo.getCurrentPlayer().printCards());
-				List<cards.Card> cards = cluedo.getCurrentPlayer().getCards();
+				List<Model.Card> cards = cluedo.getCurrentPlayer().getCards();
 				new GenericDialogue(jFrame, cards, cluedo);
 				break;
 
 			case "Suggest":
+				
 				//Weapons
 				new AccusationDialog(jFrame, weaponCards, cluedo, 2);
 				//characters

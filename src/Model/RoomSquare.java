@@ -1,9 +1,9 @@
-package squares;
+package Model;
 
-import cards.RoomCard;
-import cluedo.Player;
 import java.util.ArrayList;
 import java.util.List;
+
+import controller.Player;
 
 /**
  * Created by Adam on 25/07/16.

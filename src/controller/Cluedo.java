@@ -1,15 +1,15 @@
-package cluedo;
+package controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import cards.Card;
-import cards.CharacterCard;
-import cards.RoomCard;
-import cards.WeaponCard;
-import squares.Square;
-import squares.StairSquare;
+import Model.Card;
+import Model.CharacterCard;
+import Model.RoomCard;
+import Model.Square;
+import Model.StairSquare;
+import Model.WeaponCard;
 import util.*;
 import view.Board;
 

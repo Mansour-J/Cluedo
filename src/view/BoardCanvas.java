@@ -18,8 +18,6 @@
 
 package view;
 
-import cluedo.Cluedo;
-import cluedo.Player;
 import util.CluedoError;
 
 import java.awt.event.MouseEvent;
@@ -30,6 +28,9 @@ import java.awt.image.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import controller.Cluedo;
+import controller.Player;
 
 /**
  * The board canvas is responsible for drawing the game.

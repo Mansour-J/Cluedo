@@ -1,10 +1,10 @@
-package cluedo;
-
-import cards.Card;
-import cards.CharacterCard;
+package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Model.Card;
+import Model.CharacterCard;
 
 /**
  * Created by Adam on 25/07/16.

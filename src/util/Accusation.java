@@ -1,14 +1,16 @@
 package util;
 
-import cards.Card;
-import cards.RoomCard;
-import cluedo.Cluedo;
 import view.Board;
-import cluedo.Game;
-import cluedo.Player;
-import squares.RoomSquare;
 
 import javax.swing.*;
+
+import Model.Card;
+import Model.RoomCard;
+import Model.RoomSquare;
+import controller.Cluedo;
+import controller.Game;
+import controller.Player;
+
 import java.util.ArrayList;
 import java.util.List;
 

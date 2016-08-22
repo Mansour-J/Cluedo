@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 
-import cluedo.Cluedo;
+import controller.Cluedo;
 
 /**
 <<<<<<< HEAD

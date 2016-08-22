@@ -1,8 +1,8 @@
-package cards;
-
-import cluedo.Player;
+package Model;
 
 import java.util.List;
+
+import controller.Player;
 
 /**
  * Created by Adam on 25/07/16.

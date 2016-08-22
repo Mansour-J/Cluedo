@@ -1,7 +1,7 @@
-package squares;
+package Model;
 
+import controller.Player;
 import util.CluedoError;
-import cluedo.Player;
 
 /**
  * Created by Adam on 25/07/16.
