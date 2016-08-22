@@ -58,10 +58,8 @@ public class BoardFrame extends JFrame {
 		JMenuBar menuBar;
 		JMenu menu;
 
-
 		// Create the menu bar.
 		menuBar = new JMenuBar();
-
 
 		/* Init the file menu. */
 		menu = new JMenu("File");
@@ -77,13 +75,11 @@ public class BoardFrame extends JFrame {
 		newGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-
 				EventQueue.invokeLater(() -> {
 					Cluedo cluedo = new Cluedo();
 					BoardFrame ex = new BoardFrame("Adam", cluedo, new KeyListener[0]);
 					ex.setVisible(true);
 				});
-
 
 			}
 		});
