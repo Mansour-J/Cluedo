@@ -24,7 +24,7 @@ public class GenericDialogue extends JDialog {
 	
 	public GenericDialogue(JFrame parent, List<Card> cards, Cluedo cluedo) {
 
-    	super(parent, "Selecting Characters ...", false);
+    	super(parent, "", false);
         this.characters = cards;
         this.cluedo = cluedo;
 		setSize(520, 720);
@@ -53,7 +53,6 @@ public class GenericDialogue extends JDialog {
 			tmp.setSize(20,70);
 			tmp.setBorder(BorderFactory.createEmptyBorder());
 			add(tmp);
-
 		}
 	}
 }

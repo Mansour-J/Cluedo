@@ -23,7 +23,7 @@ public class Accusation {
     /**
      * Accuse a player of the crime
      */
-    public static void accuse(Cluedo cluedo, JFrame parent) throws CluedoError{
+    public static String accuse(Cluedo cluedo, JFrame parent) throws CluedoError{
         // Should have character, weapon and room card in selectedCards
         if(selectedCards.size() != 3)
             throw new CluedoError("Fucking cunt, should be three cards here");
@@ -31,16 +31,16 @@ public class Accusation {
         Game currentGame = cluedo.getGame();
         if (currentGame.accuse(selectedCards)) {
             // They won the game
-            JOptionPane.showMessageDialog(parent, "Congratulations, you won the game!", "Game Over",
-                    JOptionPane.PLAIN_MESSAGE);
             currentGame.finish();
+            return "Congratulations, you won the game!";
 
         } else {
             // Incorrect accusation
-            JOptionPane.showMessageDialog(parent, "Sorry, that was an invalid accusation, you are now eliminated from the game." +
-                    "", "Incorrect Accusation",
-                    JOptionPane.PLAIN_MESSAGE);
             cluedo.getPlayers().remove(cluedo.getCurrentPlayer());
+            JOptionPane.showMessageDialog(parent, "Sorry, that was an invalid accusation, you are now eliminated from the game."
+                    , "Incorrect Accusation", JOptionPane.PLAIN_MESSAGE);
+            return "Sorry, that was an invalid accusation, you are now eliminated from the game.";
+
         }
     }
 
@@ -58,6 +58,7 @@ public class Accusation {
         }catch(CluedoError error){
             JOptionPane.showMessageDialog(parent, error.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         Card cardProvedWrong = proveSolutionWrong(selectedCards, currentGame.getPlayers());
 

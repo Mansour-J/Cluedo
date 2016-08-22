@@ -77,7 +77,6 @@ public class CharacterDialouge extends JDialog implements ActionListener {
         temp.setVisible(true);
 
         play = new JButton("play");
-
         play.setActionCommand("play");
         play.addActionListener(this);
         temp.add(play, BorderLayout.NORTH);
@@ -92,7 +91,6 @@ public class CharacterDialouge extends JDialog implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
         if (e.getActionCommand().equals("3")) {
             this.numPlayer = 3;
             System.out.println("3");
@@ -110,8 +108,5 @@ public class CharacterDialouge extends JDialog implements ActionListener {
             SelectCharacters mansour = new SelectCharacters(this.owner, this.numPlayer, this.cluedo);
             mansour.setVisible(true);
         }
-
     }
-
-
 }

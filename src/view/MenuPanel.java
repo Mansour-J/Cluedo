@@ -134,7 +134,6 @@ public class MenuPanel extends JPanel implements ActionListener {
 				break;
 
 			case "Suggest":
-
 				//Weapons
 				new AccusationDialog(jFrame, weaponCards, cluedo, 2);
 				//characters
@@ -142,15 +141,12 @@ public class MenuPanel extends JPanel implements ActionListener {
 				break;
 
 			case "Accuse":
-
 				// Weapons
 				new AccusationDialog(jFrame, weaponCards, cluedo, 3);
 				// Characters
 				new AccusationDialog(jFrame, characterCards, cluedo, 3);
                 // Rooms
                 new AccusationDialog(jFrame, roomCards, cluedo, 3);
-
-
                 break;
 
 			case "End_Turn":

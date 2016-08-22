@@ -51,7 +51,6 @@ public class AccusationDialog extends JDialog implements ActionListener {
                 JButton tmp = new JButton(new ImageIcon("images/rooms/" + c.getValue() + ".png"));
                 tmp.addActionListener(this);
                 tmp.setBorder(BorderFactory.createEmptyBorder());
-
                 tmp.setActionCommand(String.valueOf(++index));
                 this.add(tmp);
 
@@ -71,6 +70,7 @@ public class AccusationDialog extends JDialog implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Accusation.selectedCards.add(this.cards.get(Integer.valueOf(e.getActionCommand())));
         if (Accusation.selectedCards.size() == numOfCardsToSelect) {
+            String msg = " ";
             if(numOfCardsToSelect == 2)
                 Accusation.suggest(cluedo, parent);
             else if(numOfCardsToSelect == 3)
@@ -78,6 +78,4 @@ public class AccusationDialog extends JDialog implements ActionListener {
         }
         dispose();
     }
-
-
 }
